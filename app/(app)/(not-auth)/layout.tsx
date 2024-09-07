@@ -2,9 +2,10 @@ import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { config } from "@/config";
 
 export const metadata: Metadata = {
-  title: "My Hub - NextEasy",
+  title: `My Hub - ${config.name}`,
 };
 
 export default function Layout({
