@@ -1,4 +1,4 @@
-import FormForgotPassword from "@/features/auth/FormForgotPassword";
+import FormForgotPassword from "./FormForgotPassword";
 
 export default function ForgotPassword() {
   return (

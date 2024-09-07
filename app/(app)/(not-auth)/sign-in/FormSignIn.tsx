@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-import { ButtonLoading } from "@/components/ui/button-loading";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -165,9 +164,9 @@ const FormSignIn = () => {
             )}
           />
 
-          <ButtonLoading type="submit" isLoading={isLoading} className="w-full">
+          <Button type="submit" disabled={isLoading} className="w-full">
             Sign In
-          </ButtonLoading>
+          </Button>
         </form>
       </Form>
 

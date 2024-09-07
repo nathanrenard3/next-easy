@@ -1,4 +1,4 @@
-import FormRegister from "@/features/auth/FormRegister";
+import FormRegister from "./FormRegister";
 
 export default function Register() {
   return (

@@ -1,4 +1,12 @@
 export const config = {
+  // App configuration
+  name: "NextEasy",
+  // Socials configuration (for footer of landing page)
+  socials: {
+    twitter: "https://twitter.com/nexteasy",
+    instagram: "https://www.instagram.com/nexteasy",
+    linkedin: "https://www.linkedin.com/nexteasy",
+  },
   // Stripe configuration
   stripe: {
     // Configure the products that are available for purchase (subscription)

@@ -1,10 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import {
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
+import { config } from "@/config";
 
 const Footer = () => {
+  const socialIcons = [
+    { name: "twitter", icon: TwitterLogoIcon, url: config.socials.twitter },
+    {
+      name: "instagram",
+      icon: InstagramLogoIcon,
+      url: config.socials.instagram,
+    },
+    { name: "linkedin", icon: LinkedInLogoIcon, url: config.socials.linkedin },
+  ];
+
   return (
     <footer className="bg-white rounded-lg m-4 w-full max-w-screen-2xl mx-auto px-6 md:px-8 py-8 md:py-12">
       <div className="flex flex-col space-y-8">
@@ -24,29 +37,27 @@ const Footer = () => {
             />
           </Link>
           <div className="flex items-center space-x-4">
-            <a
-              href="https://www.instagram.com/nexteasy.fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 transition-transform"
-            >
-              <InstagramLogoIcon className="w-6 h-6 text-gray-600 hover:text-primary transition-colors" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/nexteasy-fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-110 transition-transform"
-            >
-              <LinkedInLogoIcon className="w-6 h-6 text-gray-600 hover:text-primary transition-colors" />
-            </a>
+            {socialIcons.map(
+              (social) =>
+                social.url && (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-110 transition-transform"
+                  >
+                    <social.icon className="w-6 h-6 text-gray-600 hover:text-primary transition-colors" />
+                  </a>
+                )
+            )}
           </div>
         </div>
         <div className="text-center md:text-left">
           <span className="text-sm text-gray-500">
             © 2024{" "}
             <Link href="/" className="hover:text-primary transition-colors">
-              NextEasy
+              {config.name}
             </Link>
             . All rights reserved.
           </span>

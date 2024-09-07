@@ -14,14 +14,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { ButtonLoading } from "@/components/ui/button-loading";
-import { forgotPasswordAction } from "@/lib/db/actions/forgot-password-actions";
+import { forgotPasswordAction } from "./forgot-password-actions";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email({
-    message: "L'adresse email n'est pas valide",
+    message: "Email is not valid",
   }),
 });
 
@@ -38,22 +37,19 @@ const FormForgotPassword = () => {
   const onSubmit = form.handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("email", data.email);
-      const result = await forgotPasswordAction(formData);
+      const result = await forgotPasswordAction({ email: data.email });
       if (result.success) {
         toast({
-          title: "Email envoyé",
-          description:
-            "Allez dans votre email pour réinitialiser votre mot de passe.",
+          title: "Email sent",
+          description: "Check your email to reset your password.",
         });
         form.reset();
       }
     } catch (error: any) {
       toast({
-        title: "Erreur",
+        title: "Error",
         description:
-          error.message || "Impossible d'envoyer l'e-mail de réinitialisation.",
+          error.message || "Unable to send the reset password email.",
         variant: "destructive",
       });
     } finally {
@@ -75,18 +71,18 @@ const FormForgotPassword = () => {
               </FormControl>
               <FormMessage />
               <div className="flex items-center">
-                <span className="text-sm">Vous avez déjà un compte ?</span>
+                <span className="text-sm">Already have an account ?</span>
                 <Button variant="link" asChild className="px-2">
-                  <Link href="/sign-in">Se connecter</Link>
+                  <Link href="/sign-in">Sign in</Link>
                 </Button>
               </div>
             </FormItem>
           )}
         />
 
-        <ButtonLoading type="submit" isLoading={isLoading} className="w-full">
-          Réinitialiser
-        </ButtonLoading>
+        <Button type="submit" disabled={isLoading} className="w-full">
+          Reset password
+        </Button>
       </form>
     </Form>
   );

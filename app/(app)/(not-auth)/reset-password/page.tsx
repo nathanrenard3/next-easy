@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import FormResetPassword from "@/features/auth/FormResetPassword";
+import FormResetPassword from "@/app/(app)/(not-auth)/reset-password/FormResetPassword";
 
 const ResetPasswordContent = () => {
   const [isValidToken, setIsValidToken] = useState(true);

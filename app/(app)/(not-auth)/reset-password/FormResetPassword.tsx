@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { ButtonLoading } from "@/components/ui/button-loading";
-import { resetPasswordAction } from "@/lib/db/actions/reset-password-actions";
+import { resetPasswordAction } from "./reset-password-actions";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z
   .object({
@@ -53,15 +53,15 @@ const FormResetPassword = ({
   const onSubmit = form.handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("token", token);
-      formData.append("password", data.password);
-      const result = await resetPasswordAction(formData);
+      const result = await resetPasswordAction({
+        token,
+        password: data.password,
+      });
       if (result.success) {
         toast({
-          title: "Mot de passe réinitialisé",
+          title: "Password reset successfully",
           description:
-            "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+            "Your password has been reset successfully. You can now sign in with your new password.",
         });
         router.push("/sign-in");
       }
@@ -71,8 +71,7 @@ const FormResetPassword = ({
       } else {
         toast({
           title: "Erreur",
-          description:
-            error.message || "Impossible de réinitialiser le mot de passe.",
+          description: error.message || "Unable to reset the password.",
           variant: "destructive",
         });
       }
@@ -89,13 +88,9 @@ const FormResetPassword = ({
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nouveau mot de passe</FormLabel>
+              <FormLabel>New password</FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Nouveau mot de passe"
-                  {...field}
-                />
+                <Input type="password" placeholder="New password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -107,11 +102,11 @@ const FormResetPassword = ({
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirmer le nouveau mot de passe</FormLabel>
+              <FormLabel>Confirm new password</FormLabel>
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="Confirmer le nouveau mot de passe"
+                  placeholder="Confirm new password"
                   {...field}
                 />
               </FormControl>
@@ -120,9 +115,9 @@ const FormResetPassword = ({
           )}
         />
 
-        <ButtonLoading type="submit" isLoading={isLoading} className="w-full">
-          Changer le mot de passe
-        </ButtonLoading>
+        <Button type="submit" disabled={isLoading} className="w-full">
+          Change password
+        </Button>
       </form>
     </Form>
   );

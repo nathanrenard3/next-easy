@@ -1,160 +1,157 @@
 import React from "react";
+import { config } from "@/config";
+
+const LAST_UPDATED = "August 20, 2024";
+
+type Section = {
+  title: string;
+  content: React.ReactNode;
+};
+
+const sections: Section[] = [
+  {
+    title: "1. Introduction",
+    content: (
+      <p>
+        {config.name} is a boilerplate project based on Next.js. At{" "}
+        {config.name}, we are committed to protecting your privacy and personal
+        data. This privacy policy explains how we collect, use, share, and
+        protect your personal information.
+      </p>
+    ),
+  },
+  {
+    title: "2. Information Collection",
+    content: (
+      <>
+        <p>We collect the following information:</p>
+        <ul className="list-disc pl-6 mt-2">
+          <li>
+            Identification information: name, first name, email address, phone
+            number
+          </li>
+          <li>
+            Professional information: company name, address, city, postal code
+          </li>
+          <li>
+            Payment information: we use Stripe to process payments and do not
+            store your credit card information directly
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "3. Information Usage",
+    content: (
+      <>
+        <p>We use your information to:</p>
+        <ul className="list-disc pl-6 mt-2">
+          <li>Provide and improve our services</li>
+          <li>Personalize your user experience</li>
+          <li>Communicate with you regarding your account and our services</li>
+          <li>Process payments and manage subscriptions</li>
+          <li>Analyze the usage of our platform to improve our offerings</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "4. Information Sharing",
+    content: (
+      <>
+        <p>
+          We do not sell your personal information. We may share your
+          information with:
+        </p>
+        <ul className="list-disc pl-6 mt-2">
+          <li>
+            Third-party service providers who assist us in operating our
+            platform (e.g., Stripe for payment processing)
+          </li>
+          <li>Legal authorities if we are legally required to do so</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "5. Data Protection",
+    content: (
+      <p>
+        We implement technical and organizational security measures to protect
+        your personal data from unauthorized access, loss, or alteration.
+      </p>
+    ),
+  },
+  {
+    title: "6. Your Rights",
+    content: (
+      <>
+        <p>You have the right to:</p>
+        <ul className="list-disc pl-6 mt-2">
+          <li>Access your personal data</li>
+          <li>Correct your personal data if it is inaccurate</li>
+          <li>Request the deletion of your personal data</li>
+          <li>Object to the processing of your personal data</li>
+          <li>Request the portability of your data</li>
+        </ul>
+        <p className="mt-2">
+          To exercise these rights, please contact us at the email address
+          provided below.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "7. Cookies and Similar Technologies",
+    content: (
+      <p>
+        We use cookies and similar technologies to enhance your experience on
+        our platform. You can manage your cookie preferences in your browser
+        settings.
+      </p>
+    ),
+  },
+  {
+    title: "8. Changes to the Privacy Policy",
+    content: (
+      <p>
+        We reserve the right to modify this privacy policy at any time. Any
+        changes will be posted on this page with an updated date.
+      </p>
+    ),
+  },
+  {
+    title: "9. Complaints",
+    content: (
+      <p>
+        You have the right to file a complaint with the relevant supervisory
+        authority, such as the CNIL (French data protection authority), on their
+        website via the following link: https://www.cnil.fr/en/plaintes or by
+        postal address: Service des Plaintes – 3 Place de Fontenoy – TSA 80715 –
+        75334 PARIS CEDEX 07, France.
+      </p>
+    ),
+  },
+];
+
+const renderSection = ({ title, content }: Section) => (
+  <section key={title} className="mb-8">
+    <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+    {content}
+  </section>
+);
 
 const PrivacyPolicy = () => {
-  const lastUpdated = "20 août 2024";
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">
-        Politique de Confidentialité d'Iconik
+        Privacy Policy of {config.name}
       </h1>
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
-        <p>
-          Iconik est une application SaaS (Software as a Service) qui permet aux
-          commerçants de créer des programmes de fidélité et aux consommateurs
-          de gagner des récompenses en achetant chez eux. Chez Iconik, nous nous
-          engageons à protéger votre vie privée et vos données personnelles.
-          Cette politique de confidentialité explique comment nous collectons,
-          utilisons, partageons et protégeons vos informations personnelles.
-        </p>
-      </section>
+      {sections.map(renderSection)}
 
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          2. Collecte des Informations
-        </h2>
-        <p>Nous collectons les informations suivantes :</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li>
-            Informations d'identification : nom, prénom, adresse e-mail, numéro
-            de téléphone
-          </li>
-          <li>
-            Informations professionnelles : nom de l'entreprise, adresse, ville,
-            code postal
-          </li>
-          <li>
-            Informations de paiement : nous utilisons Stripe pour traiter les
-            paiements et ne stockons pas directement vos informations de carte
-            de crédit
-          </li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          3. Utilisation des Informations
-        </h2>
-        <p>Nous utilisons vos informations pour :</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li>Fournir et améliorer nos services</li>
-          <li>Personnaliser votre expérience utilisateur</li>
-          <li>Communiquer avec vous concernant votre compte et nos services</li>
-          <li>Traiter les paiements et gérer les abonnements</li>
-          <li>
-            Analyser l'utilisation de notre plateforme pour améliorer nos offres
-          </li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          4. Partage des Informations
-        </h2>
-        <p>
-          Nous ne vendons pas vos informations personnelles. Nous pouvons
-          partager vos informations avec :
-        </p>
-        <ul className="list-disc pl-6 mt-2">
-          <li>
-            Des fournisseurs de services tiers qui nous aident à exploiter notre
-            plateforme (par exemple, Stripe pour le traitement des paiements)
-          </li>
-          <li>Des autorités légales si nous y sommes légalement tenus</li>
-        </ul>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          5. Protection des Données
-        </h2>
-        <p>
-          Nous mettons en œuvre des mesures de sécurité techniques et
-          organisationnelles pour protéger vos données personnelles contre tout
-          accès non autorisé, perte ou altération.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">6. Vos Droits</h2>
-        <p>Vous avez le droit de :</p>
-        <ul className="list-disc pl-6 mt-2">
-          <li>Accéder à vos données personnelles</li>
-          <li>Rectifier vos données personnelles si elles sont inexactes</li>
-          <li>Demander la suppression de vos données personnelles</li>
-          <li>Vous opposer au traitement de vos données personnelles</li>
-          <li>Demander la portabilité de vos données</li>
-        </ul>
-        <p className="mt-2">
-          Pour exercer ces droits, veuillez nous contacter à l'adresse e-mail
-          fournie ci-dessous.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          7. Cookies et Technologies Similaires
-        </h2>
-        <p>
-          Nous utilisons des cookies et des technologies similaires pour
-          améliorer votre expérience sur notre plateforme. Vous pouvez gérer vos
-          préférences en matière de cookies dans les paramètres de votre
-          navigateur.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          8. Modifications de la Politique de Confidentialité
-        </h2>
-        <p>
-          Nous nous réservons le droit de modifier cette politique de
-          confidentialité à tout moment. Toute modification sera publiée sur
-          cette page avec une date de mise à jour.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">9. Plaintes</h2>
-        <p>
-          Vous conservez le droit d’introduire une réclamation auprès de
-          l’autorité de contrôle (CNIL), sur son site internet, via le lien
-          suivant : https://www.cnil.fr/fr/plaintes ou par adresse postale :
-          Service des Plaintes – 3 Place de Fontenoy – TSA 80715 – 75334 PARIS
-          CEDEX 07.
-        </p>
-      </section>
-
-      <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">10. Nous Contacter</h2>
-        <p>
-          Si vous avez des questions concernant cette politique de
-          confidentialité, veuillez nous contacter à :
-        </p>
-        <p className="mt-2">
-          <a
-            href="mailto:iconik802@gmail.com"
-            className="text-primary hover:underline"
-          >
-            iconik802@gmail.com
-          </a>
-        </p>
-      </section>
-
-      <p className="text-sm text-gray-600 mt-8">
-        Dernière mise à jour : {lastUpdated}
-      </p>
+      <p className="text-sm text-gray-600 mt-8">Last updated: {LAST_UPDATED}</p>
     </div>
   );
 };

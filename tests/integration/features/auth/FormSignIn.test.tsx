@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
-import FormSignIn from "@/features/auth/FormSignIn";
+import FormSignIn from "@/app/(app)/(not-auth)/reset-password/FormSignIn";
 
 // Mock necessary modules and functions
 jest.mock("next/navigation", () => ({

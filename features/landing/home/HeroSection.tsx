@@ -1,21 +1,23 @@
 "use client";
 
-import AnimatedShinyText from "@/components/magicui/animated-shiny-text";
-import BlurFade from "@/components/magicui/blur-fade";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import Particles from "@/components/magicui/particles";
 import Safari from "@/components/magicui/safari";
 import { cn } from "@/lib/utils";
 import { motion, useInView } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import Image from "next/image";
-import { useRef } from "react";
-
+import { useRef, useEffect, useState } from "react";
 const HeroSection = () => {
   const fadeInRef = useRef(null);
   const fadeInInView = useInView(fadeInRef, {
     once: true,
   });
+
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(window.location.origin);
+  }, []);
 
   const fadeUpVariants = {
     initial: {
@@ -127,7 +129,7 @@ const HeroSection = () => {
               )}
             />
 
-            <Safari url="nexteasy.io" className="size-full" />
+            <Safari url={url} className="size-full" />
 
             <BorderBeam
               colorFrom="#1D283A"
