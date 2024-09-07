@@ -1,5 +1,5 @@
 {
-  "name": "next-js-test",
+  "name": "nexteasy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "@next-auth/prisma-adapter": "^1.0.7",
     "@next/bundle-analyzer": "^14.2.5",
     "@next/mdx": "^14.2.5",
-    "@prisma/client": "^5.19.0",
+    "@prisma/client": "^5.19.1",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -126,7 +126,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^24.1.0",
     "postcss": "^8",
-    "prisma": "^5.19.0",
+    "prisma": "^5.19.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss": "^3.4.7",
     "ts-jest": "^29.2.3",

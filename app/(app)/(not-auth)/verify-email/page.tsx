@@ -42,31 +42,28 @@ export default async function VerifyEmail({
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-2xl text-center lg:text-left font-bold mb-4">
-        Vérification de l'email
+        Email Verification
       </h1>
-      {verificationStatus === "pending" && (
-        <p>Vérification de votre email en cours...</p>
-      )}
+      {verificationStatus === "pending" && <p>Verifying your email...</p>}
       {verificationStatus === "success" && (
         <>
           <p className="text-green-600 mb-4">
-            Votre email a été vérifié avec succès !
+            Your email has been successfully verified!
           </p>
           <Button asChild>
-            <Link href="/sign-in">Se connecter</Link>
+            <Link href="/sign-in">Sign In</Link>
           </Button>
         </>
       )}
       {verificationStatus === "error" && (
         <p className="text-destructive">
-          Une erreur s'est produite lors de la vérification de votre email.
-          Veuillez réessayer.
+          An error occurred while verifying your email. Please try again.
         </p>
       )}
       {verificationStatus === "missing_token" && (
         <p className="text-destructive">
-          Le token de vérification est manquant. Veuillez utiliser le lien
-          fourni dans l'email.
+          Verification token is missing. Please use the link provided in the
+          email.
         </p>
       )}
     </div>

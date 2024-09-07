@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import Stripe from "stripe";
-import { authOptions } from "../lib/db/authOptions";
-import prisma from "../lib/db/prisma";
-import { StripeSubscriptionStatus } from "@prisma/client";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import prisma from "./db/prisma";
+import { config } from "@/config";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -23,8 +23,9 @@ export const stripe = new Stripe(stripeSecretKey!, {
  */
 export async function createCheckoutLink(customerId: string, priceId: string) {
   const checkout = await stripe.checkout.sessions.create({
-    success_url: `${process.env.URL_FRONT}/success`,
-    cancel_url: `${process.env.URL_FRONT}/cancel`,
+    success_url: config.stripe.payment_success_url,
+    cancel_url: config.stripe.payment_cancel_url,
+    mode: config.stripe.mode as Stripe.Checkout.SessionCreateParams.Mode,
     customer: customerId,
     line_items: [
       {
@@ -32,149 +33,10 @@ export async function createCheckoutLink(customerId: string, priceId: string) {
         quantity: 1,
       },
     ],
-    mode: "subscription",
-    allow_promotion_codes: true,
+    allow_promotion_codes: config.stripe.allow_promotion_codes,
   });
 
   return checkout.url;
-}
-
-/**
- * Check if the company has a subscription
- * @returns {Boolean} - True if the company has a subscription
- */
-export async function hasSubscription() {
-  const session = await getServerSession(authOptions);
-
-  if (!session || !session.user) {
-    return false;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email: session.user.email as string,
-    },
-    include: {
-      locations: {
-        select: {
-          company: true,
-        },
-      },
-    },
-  });
-
-  if (!user) {
-    return false;
-  }
-
-  // Check if the company has a stripe customer id
-  if (!user.locations[0].company.stripeCustomerId) {
-    return false;
-  }
-
-  const subscriptions = await stripe.subscriptions.list({
-    customer: String(user.locations[0].company.stripeCustomerId),
-  });
-
-  return subscriptions.data.length > 0;
-}
-
-/**
- * Check if the company has a Pro subscription
- * @returns {Boolean} - True if the company has a Pro subscription
- */
-export async function hasProSubscription() {
-  const session = await getServerSession(authOptions);
-
-  if (!session || !session.user) {
-    return false;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email: session.user.email as string,
-    },
-    include: {
-      locations: {
-        select: {
-          company: true,
-        },
-      },
-    },
-  });
-
-  if (!user) {
-    return false;
-  }
-
-  // Check if the company has a stripe customer id
-  if (!user.locations[0].company.stripeCustomerId) {
-    return false;
-  }
-
-  const proProduct = await prisma.stripeSubscription.findFirst({
-    where: {
-      companyId: user.locations[0].company.id,
-      stripeStatus: StripeSubscriptionStatus.ACTIVE,
-      stripePrice: {
-        product: {
-          name: "Pro",
-        },
-      },
-    },
-  });
-
-  return !!proProduct;
-}
-
-/**
- * Check if the user has avanced or pro subscription
- * @returns {Boolean} - True if the company has a Avanced or Pro subscription
- */
-export async function hasAdvancedOrProSubscription() {
-  const session = await getServerSession(authOptions);
-
-  if (!session || !session.user) {
-    return false;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email: session.user.email as string,
-    },
-    include: {
-      locations: {
-        select: {
-          company: true,
-        },
-      },
-    },
-  });
-
-  if (!user) {
-    return false;
-  }
-
-  // Check if the company has a stripe customer id
-  if (!user.locations[0].company.stripeCustomerId) {
-    return false;
-  }
-
-  const avancedProduct = await prisma.stripeSubscription.findFirst({
-    where: {
-      companyId: user.locations[0].company.id,
-      stripeStatus: StripeSubscriptionStatus.ACTIVE,
-      stripePrice: {
-        product: {
-          name: {
-            in: ["Pro", "Avancé"],
-          },
-        },
-      },
-    },
-  });
-
-  return !!avancedProduct;
 }
 
 export async function generateCustomerPortalLink(customerId: string) {
@@ -190,30 +52,20 @@ export const createCheckoutSession = async (priceId: string) => {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
-    throw new Error("Vous devez être connecté pour effectuer cette action.");
+    throw new Error("You are not logged in.");
   }
 
   const user = await prisma.user.findUnique({
     where: {
       email: session.user.email as string,
     },
-    include: {
-      locations: {
-        select: {
-          company: true,
-        },
-      },
-    },
   });
 
-  if (!user || !user.locations[0].company.stripeCustomerId) {
-    throw new Error("Impossible de trouver les informations de l'entreprise.");
+  if (!user || !user.stripeCustomerId) {
+    throw new Error("The user does not have a stripe customer id.");
   }
 
-  const checkoutLink = await createCheckoutLink(
-    user.locations[0].company.stripeCustomerId,
-    priceId
-  );
+  const checkoutLink = await createCheckoutLink(user.stripeCustomerId, priceId);
 
   return checkoutLink;
 };

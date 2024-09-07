@@ -15,7 +15,7 @@ function mapIntervalToEnum(interval: string | null): StripePriceInterval {
     case "year":
       return StripePriceInterval.YEAR;
     default:
-      return StripePriceInterval.MONTH; // valeur par défaut
+      return StripePriceInterval.MONTH; // default value
   }
 }
 
@@ -89,7 +89,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       switch (event.type) {
         case "product.created":
         case "product.updated":
-          const product = await prisma.stripeProduct.upsert({
+          await prisma.stripeProduct.upsert({
             where: {
               productId: (event.data.object as Stripe.Product).id,
             },
@@ -108,22 +108,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             },
           });
 
-          const features = (event.data.object as any).features ?? [];
-
-          const allFeatures = [...features];
-
-          await prisma.stripeFeature.deleteMany({
-            where: {
-              productId: product.productId,
-            },
-          });
-
-          await prisma.stripeFeature.createMany({
-            data: allFeatures.map((feature: any) => ({
-              productId: product.productId,
-              description: feature.name, // Mappez le champ name à description
-            })),
-          });
           break;
         case "product.deleted":
           await prisma.stripeProduct.delete({
@@ -139,6 +123,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             typeof price.product === "string"
               ? price.product
               : (price.product as Stripe.Product).id;
+          const interval = mapIntervalToEnum(price.recurring?.interval ?? null);
           await prisma.stripePrice.upsert({
             where: {
               priceId: price.id,
@@ -147,14 +132,14 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
               unitAmount: price.unit_amount ?? 0,
               active: price.active,
               currency: price.currency,
-              interval: mapIntervalToEnum(price.recurring?.interval ?? null),
+              interval: interval,
             },
             create: {
               priceId: price.id,
               unitAmount: price.unit_amount ?? 0,
               active: price.active,
               currency: price.currency,
-              interval: mapIntervalToEnum(price.recurring?.interval ?? null),
+              interval: interval,
               product: { connect: { productId: productId } },
             },
           });
@@ -170,15 +155,15 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         case "customer.subscription.updated":
         case "customer.subscription.deleted": {
           const subscription = event.data.object as Stripe.Subscription;
-          const companyId = (
-            await prisma.company.findFirst({
+          const userId = (
+            await prisma.user.findFirst({
               where: {
                 stripeCustomerId: subscription.customer as string,
               },
               select: { id: true },
             })
           )?.id;
-          if (!companyId) break;
+          if (!userId) break;
 
           const priceId = subscription.items.data[0].price.id;
           const status = mapSubscriptionStatus(subscription.status);
@@ -187,16 +172,16 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
               id: subscription.id,
             },
             update: {
-              stripeStatus: mapSubscriptionStatus(subscription.status),
+              stripeStatus: status,
               stripePriceId: priceId,
-              companyId,
+              userId,
               stripeId: subscription.id,
             },
             create: {
               id: subscription.id,
-              stripeStatus: mapSubscriptionStatus(subscription.status),
+              stripeStatus: status,
               stripePriceId: priceId,
-              companyId,
+              userId,
               stripeId: subscription.id,
             },
           });
@@ -209,7 +194,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             const subscriptionId = checkoutSession.subscription as string;
             const customerId = checkoutSession.customer as string;
             const userId = (
-              await prisma.company.findFirst({
+              await prisma.user.findFirst({
                 where: {
                   stripeCustomerId: customerId,
                 },
@@ -236,7 +221,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
                 id: subscription.id,
                 stripeStatus: mapSubscriptionStatus(subscription.status),
                 stripePriceId: priceId,
-                companyId: userId,
+                userId,
                 stripeId: subscription.id,
               },
             });

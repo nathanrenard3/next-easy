@@ -1,7 +1,6 @@
 import DynamicBreadcrumbs from "@/templates/app/DynamicBreadcrumbs";
 import Sidebar from "@/templates/app/Sidebar";
 import { NavigationElement } from "@/types/navigation-element";
-import dynamic from "next/dynamic";
 import { Home, Info } from "lucide-react";
 
 export default async function Layout({

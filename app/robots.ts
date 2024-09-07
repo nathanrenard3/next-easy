@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://nexteasy.com/sitemap.xml",
+    sitemap: "https://nexteasy.io/sitemap.xml",
   };
 }

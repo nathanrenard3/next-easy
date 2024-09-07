@@ -18,7 +18,7 @@ export const FeatureOne = () => {
         </p>
       </div>
       <div className="relative w-full overflow-hidden xl:w-1/2 h-[200px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-full p-4 sm:p-6 md:p-8 lg:p-10">
-        <Safari url="nexteasy.com" className="size-full" />
+        <Safari url="nexteasy.io" className="size-full" />
       </div>
     </div>
   );

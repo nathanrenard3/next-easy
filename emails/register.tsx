@@ -10,6 +10,7 @@ import {
   Tailwind,
 } from "@react-email/components";
 import * as React from "react";
+import { config } from "@/config";
 
 interface RegisterProps {
   name?: string;
@@ -19,36 +20,34 @@ interface RegisterProps {
 export const Register = ({ name, url }: RegisterProps) => (
   <Html>
     <Head />
-    <Preview>
-      Bienvenue chez NextEasy - Votre accès personnel est prêt !
-    </Preview>
+    <Preview>{config.email.templates.welcome.subject}</Preview>
     <Tailwind>
       <Body className="bg-white font-sans">
         <Container className="max-w-[480px] mx-auto py-5 px-0">
           <Text className="text-2xl leading-tight">
-            <strong>{name}</strong>, votre accès personnel a été créé !
+            <strong>{name}</strong>, your personal access has been created!
           </Text>
 
           <Section className="p-6 border border-solid border-gray-300 rounded-lg text-center">
             <Text className="m-0 mb-4 text-left">
-              Bienvenue <strong>{name}</strong>!
+              Welcome <strong>{name}</strong>!
             </Text>
             <Text className="m-0 mb-4 text-left">
-              Votre compte personnel NextEasy a été créé avec succès. Avant de
-              commencer à utiliser l'application, veuillez vérifier votre boîte
-              de réception pour confirmer votre adresse e-mail.
+              Your personal access to NextEasy is ready. Before starting to use
+              the application, please check your inbox to confirm your email
+              address.
             </Text>
 
             <Button
               href={url}
               className="bg-primary text-white text-sm py-3 px-6 rounded-lg"
             >
-              Vérifier mon adresse e-mail
+              Verify my email address
             </Button>
           </Section>
 
           <Text className="text-gray-500 text-xs text-center mt-16">
-            @2024 NextEasy. Tous droits réservés.
+            @2024 NextEasy. All rights reserved.
           </Text>
         </Container>
       </Body>

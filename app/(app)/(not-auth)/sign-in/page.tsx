@@ -1,5 +1,5 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import FormSignIn from "@/features/auth/FormSignIn";
-import { authOptions } from "@/lib/db/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -13,7 +13,7 @@ const SignIn = async () => {
   return (
     <div>
       <h3 className="text-2xl text-center lg:text-left font-bold mb-8">
-        Connectez-vous à votre compte
+        Sign In to your account
       </h3>
       <FormSignIn />
     </div>

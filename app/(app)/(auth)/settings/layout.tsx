@@ -1,29 +1,10 @@
-import prisma from "@/lib/db/prisma";
-import { generateCustomerPortalLink } from "@/lib/stripe";
-import { cookies } from "next/headers";
 import Link from "next/link";
-
-const getCompany = async (companyId: string) => {
-  const company = await prisma.company.findUnique({
-    where: {
-      id: companyId,
-    },
-  });
-  return company;
-};
 
 export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const companyId = cookies().get("company-id");
-  const company = await getCompany(companyId!.value || "");
-
-  const manageSubscription = await generateCustomerPortalLink(
-    "" + company!.stripeCustomerId
-  );
-
   return (
     <div className="flex min-h-screen w-full flex-col">
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">
@@ -35,7 +16,6 @@ export default async function Layout({
             <Link href="/settings" className="font-semibold text-primary">
               Général
             </Link>
-            <Link href={"" + manageSubscription}>Gestion de l'abonnement</Link>
           </nav>
           <div className="grid gap-6">{children}</div>
         </div>

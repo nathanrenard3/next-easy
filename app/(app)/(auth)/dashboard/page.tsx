@@ -1,6 +1,4 @@
-import OrderList from "@/features/dashboard/orders/OrdersList";
-import KpiOverview from "@/features/dashboard/overview/KpiOverview";
-import { authOptions } from "@/lib/db/authOptions";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { getServerSession } from "next-auth";
 
 const Dashboard = async () => {

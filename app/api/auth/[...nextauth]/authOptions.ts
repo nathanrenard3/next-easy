@@ -3,8 +3,6 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import bcrypt from "bcrypt";
-import { stripe } from "@/lib/stripe";
-import { cookies } from "next/headers";
 
 const { NEXTAUTH_SECRET } = process.env;
 
@@ -32,13 +30,6 @@ export const authOptions: AuthOptions = {
 
         const user = await prisma.user.findUnique({
           where: { email: email },
-          include: {
-            locations: {
-              select: {
-                company: true,
-              },
-            },
-          },
         });
 
         if (user && bcrypt.compareSync(password, user.password)) {
@@ -46,57 +37,12 @@ export const authOptions: AuthOptions = {
             throw new Error("Email not confirmed");
           }
 
-          if (!user.locations[0].company.stripeCustomerId) {
-            const stripeCustomer = await stripe.customers.create({
-              email,
-              name: `${user.firstName} ${user.lastName}`,
-            });
-
-            await prisma.company.update({
-              where: {
-                id: user.locations[0].company.id,
-              },
-              data: {
-                stripeCustomerId: stripeCustomer.id,
-              },
-            });
-          }
-
-          const locations = await prisma.location.findMany({
-            where: {
-              users: {
-                some: {
-                  id: user.id,
-                },
-              },
-            },
-          });
-
-          const locationIds = locations.map((location) => location.id);
-
-          cookies().set("current-location", locationIds[0], {
-            maxAge: 60 * 60 * 24 * 30,
-            path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-          });
-
-          cookies().set("company-id", user.locations[0].company.id, {
-            maxAge: 60 * 60 * 24 * 30,
-            path: "/",
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
-          });
-
           return {
             id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             phone: user.phone,
             email: user.email,
-            country: user.country,
-            locations: locationIds,
-            superuser: user.superuser,
           };
         } else {
           throw new Error("Authentication failed");
@@ -120,9 +66,6 @@ export const authOptions: AuthOptions = {
         token.lastName = user.lastName;
         token.phone = user.phone;
         token.email = user.email;
-        token.country = user.country;
-        token.locations = user.locations;
-        token.superuser = user.superuser;
       }
       return token;
     },
@@ -134,9 +77,6 @@ export const authOptions: AuthOptions = {
           lastName: token.lastName as string,
           phone: token.phone as string,
           email: token.email as string,
-          country: token.country as string,
-          locations: token.locations as string[],
-          superuser: token.superuser as boolean,
         };
       }
       return session;

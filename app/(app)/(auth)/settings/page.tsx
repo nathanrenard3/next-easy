@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/db/authOptions";
 import FormUserInformations from "@/features/settings/FormUserInformations";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const Settings = async () => {
   const session = await getServerSession(authOptions);
@@ -9,7 +9,7 @@ const Settings = async () => {
 
   return (
     <div className="w-full md:container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Paramètres du compte</h1>
+      <h1 className="text-2xl font-bold mb-6">Settings</h1>
       <FormUserInformations
         initialData={{
           id: session!.user.id,

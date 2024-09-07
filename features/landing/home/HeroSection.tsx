@@ -127,7 +127,7 @@ const HeroSection = () => {
               )}
             />
 
-            <Safari url="nexteasy.com" className="size-full" />
+            <Safari url="nexteasy.io" className="size-full" />
 
             <BorderBeam
               colorFrom="#1D283A"

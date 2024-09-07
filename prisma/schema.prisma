@@ -52,8 +52,8 @@ model StripePrice {
 
 model StripeSubscription {
   id            String                   @id @default(uuid())
-  companyId     String                   @map(name: "company_id")
-  company       Company                  @relation(fields: [companyId], references: [id])
+  userId        String                   @map(name: "user_id")
+  user          User                     @relation(fields: [userId], references: [id])
   stripePriceId String                   @map(name: "stripe_price_id")
   stripePrice   StripePrice              @relation(fields: [stripePriceId], references: [priceId])
   stripeId      String                   @map(name: "stripe_id")
@@ -64,22 +64,7 @@ model StripeSubscription {
   @@map(name: "stripe_subscriptions")
 }
 
-// -------------- COMPANY CONFIGURATION --------------
-
-model Company {
-  id   String @id @default(uuid())
-  name String
-  logo String
-
-  // Payment
-  stripeCustomerId String?              @map(name: "stripe_customer_id")
-  subscriptions    StripeSubscription[]
-
-  @@map(name: "companies")
-}
-
 // -------------- USER / AUTHENTICATION --------------
-
 model Account {
   id                 Int       @id @default(autoincrement())
   compoundId         String    @unique @map(name: "compound_id")
@@ -117,10 +102,15 @@ model User {
   lastName          String    @map(name: "last_name")
   email             String    @unique
   emailVerified     DateTime? @map(name: "email_verified")
+  password          String
   verificationToken String?   @map(name: "verification_token")
   phone             String
   resetToken        String?   @map(name: "reset_token")
   resetTokenExpires DateTime? @map(name: "reset_token_expires")
+
+  // Subscription management
+  stripeCustomerId String?              @map(name: "stripe_customer_id")
+  subscriptions    StripeSubscription[]
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @default(now()) @updatedAt @map(name: "updated_at")

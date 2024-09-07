@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
-import orderReducer from "./slices/orderSlice";
 
 const rootReducer = combineReducers({
-  order: orderReducer,
+  // Add your reducers here
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

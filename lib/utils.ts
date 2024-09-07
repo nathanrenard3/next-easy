@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
-import { OrderMethod } from "@prisma/client";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -84,22 +83,6 @@ export function formatPhoneNumber(phoneNumber: string): string {
     return phoneNumber; // return original if parsing fails
   }
   return parsedNumber.formatNational();
-}
-
-/**
- * Return the string representation of the order method
- * @param {OrderMethod} paymentMethod - The order method
- * @returns {string} - The string representation of the order method
- */
-export function getPaymentMethodString(paymentMethod: OrderMethod): string {
-  switch (paymentMethod) {
-    case "CASH":
-      return "Espèces";
-    case "CARD":
-      return "Carte";
-    default:
-      return "Méthode inconnue";
-  }
 }
 
 /**

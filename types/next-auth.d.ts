@@ -7,9 +7,6 @@ declare module "next-auth" {
     lastName: string;
     phone: string;
     email: string;
-    country: string;
-    locations: string[];
-    superuser: boolean;
   }
   interface Session {
     id: string;
@@ -19,9 +16,6 @@ declare module "next-auth" {
       lastName: string;
       phone: string;
       email: string;
-      country: string;
-      locations: string[];
-      superuser: boolean;
     } & DefaultSession["user"];
   }
 }

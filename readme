@@ -1,0 +1,98 @@
+# NextEasy Boilerplate
+
+## Introduction
+
+NextEasy is a powerful Next.js boilerplate designed to accelerate your web development process. It comes pre-configured with essential tools and best practices for building modern, scalable web applications.
+
+## Features
+
+- Next.js 14 with App Router
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Shadcn UI & Magic UI for pre-built components
+- Prisma ORM for database
+- NextAuth for authentication
+- Stripe for payment processing
+- SEO optimization (sitemap, robots.txt)
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/nathanrenard3/nexteasy.git
+cd nexteasy
+```
+
+### Install the dependencies
+
+```bash
+npm install
+```
+
+### Set up the environment variables
+
+Create a `.env` file in the root of the project and add the following environment variables:
+
+```bash
+# Database config
+DATABASE_URL="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks-pooler.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
+DATABASE_URL_UNPOOLED="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
+
+# Stripe config
+STRIPE_SECRET_KEY="replate-it-test-secret-key"
+STRIPE_WEBHOOK_SECRET="replate-it-test-webhook-secret"
+
+# Resend config (for sending emails)
+RESEND_API_KEY="replate-it-test-api-key"
+
+# The url for the front (used by stripe webhook and email links)
+URL_FRONT="http://localhost:3000" # Change it in prod
+
+# Supabase config
+SUPABASE_URL="https://replate-it-test-url.supabase.co"
+SUPABASE_ANON_KEY="replate-it-test-anon-key"
+
+# The url for the nextauth (login, logout, etc.) in dev
+NEXTAUTH_URL="http://localhost:3000" # Automatically set in prod
+NEXTAUTH_SECRET="replate-it-test-secret-key"
+
+# The email from which the emails are sent
+DEV_EMAIL_FROM="Acme <onboarding@resend.dev>"
+# Where the emails are sent to for testing
+DEV_EMAIL_TO="replate-it-test-email@example.com"
+```
+
+### Stripe config
+
+To set up Stripe products and prices:
+
+1. Open `config.ts` in the root directory
+2. Locate the `stripe.products` array
+3. Update each product with your Stripe Price ID, name, description, price (in cents), and features.
+
+### Auth config
+
+NextEasy uses NextAuth for authentication. Configure providers in `app/api/auth/[...nextauth]/route.ts`
+To update or add a new provider, follow these steps:
+
+1. Open `/app/api/auth/[...nextauth]/authOptions.ts` in the root directory
+2. Update the `providers` array with your authentication providers
+3. Update the `callbacks` object to customize token / session behavior. And modify `/types/next-auth.d.ts` if you need to add new properties to the user object.
+
+### Additional information
+
+- Customize `next.config.mjs` for Next.js-specific configurations.
+- Customize `/styles/globals.css` for global styles (shadcn theme).
+- Update `app/layout.tsx` for global layout and metadata settings.
+
+## Project structure
+
+- `/app`: Contains the main application code
+- `/components`: Reusable React components
+- `/lib`: Utility functions and helpers
+- `/prisma`: Prisma ORM models and migrations
+- `/public`: Static assets
+- `/styles`: Global styles and theme configuration
+- `/types`: TypeScript types
+- `/features`: Feature-specific components and logic

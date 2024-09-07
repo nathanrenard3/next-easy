@@ -23,8 +23,6 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ChangeLocation from "./ChangeLocation";
-import { Location } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -32,21 +30,9 @@ type Props = {
   elements: NavigationElement[];
   firstName: string;
   lastName: string;
-  currentLocation: Location;
-  locations: Location[];
-  hasFeature: boolean;
-  superuser: boolean;
 };
 
-const Navbar = ({
-  firstName,
-  lastName,
-  elements,
-  currentLocation,
-  locations,
-  hasFeature,
-  superuser,
-}: Props) => {
+const Navbar = ({ firstName, lastName, elements }: Props) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -122,11 +108,6 @@ const Navbar = ({
 
       {/* Right side */}
       <div className="flex items-center gap-3 lg:gap-5">
-        <ChangeLocation
-          currentLocation={currentLocation}
-          locations={locations}
-          hasFeature={hasFeature}
-        />
         <DropdownMenu onOpenChange={setIsOpen}>
           <DropdownMenuTrigger asChild>
             <div className="flex items-center cursor-pointer">
@@ -148,16 +129,11 @@ const Navbar = ({
             className="w-56"
             align={isMobile ? "end" : "center"}
           >
-            <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
+            <DropdownMenuLabel>Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              {/* {superuser && (
-                <DropdownMenuItem asChild>
-                  <Link href="/admin">Administrateur</Link>
-                </DropdownMenuItem>
-              )} */}
               <DropdownMenuItem asChild>
-                <Link href="/settings">Paramètres</Link>
+                <Link href="/settings">Settings</Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
