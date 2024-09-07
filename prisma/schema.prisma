@@ -1,0 +1,129 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// -------------- STRIPE --------------
+
+enum StripePriceInterval {
+  DAY
+  WEEK
+  MONTH
+  YEAR
+}
+
+enum StripeSubscriptionStatus {
+  ACTIVE
+  CANCELED
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  PAST_DUE
+  TRIALING
+  UNPAID
+}
+
+model StripeProduct {
+  productId   String        @id @map(name: "product_id")
+  name        String
+  description String
+  active      Boolean
+  prices      StripePrice[]
+}
+
+model StripePrice {
+  priceId      String               @id @default(uuid())
+  productId    String               @map(name: "product_id")
+  product      StripeProduct        @relation(fields: [productId], references: [productId])
+  currency     String
+  active       Boolean
+  unitAmount   Int                  @map(name: "unit_amount")
+  interval     StripePriceInterval  @map(name: "interval")
+  subscription StripeSubscription[]
+  createdAt    DateTime             @default(now()) @map(name: "created_at")
+  updatedAt    DateTime             @default(now()) @updatedAt @map(name: "updated_at")
+
+  @@map(name: "stripe_prices")
+}
+
+model StripeSubscription {
+  id            String                   @id @default(uuid())
+  companyId     String                   @map(name: "company_id")
+  company       Company                  @relation(fields: [companyId], references: [id])
+  stripePriceId String                   @map(name: "stripe_price_id")
+  stripePrice   StripePrice              @relation(fields: [stripePriceId], references: [priceId])
+  stripeId      String                   @map(name: "stripe_id")
+  stripeStatus  StripeSubscriptionStatus @map(name: "stripe_status")
+  createdAt     DateTime                 @default(now()) @map(name: "created_at")
+  updatedAt     DateTime                 @default(now()) @updatedAt @map(name: "updated_at")
+
+  @@map(name: "stripe_subscriptions")
+}
+
+// -------------- COMPANY CONFIGURATION --------------
+
+model Company {
+  id   String @id @default(uuid())
+  name String
+  logo String
+
+  // Payment
+  stripeCustomerId String?              @map(name: "stripe_customer_id")
+  subscriptions    StripeSubscription[]
+
+  @@map(name: "companies")
+}
+
+// -------------- USER / AUTHENTICATION --------------
+
+model Account {
+  id                 Int       @id @default(autoincrement())
+  compoundId         String    @unique @map(name: "compound_id")
+  userId             Int       @map(name: "user_id")
+  providerType       String    @map(name: "provider_type")
+  providerId         String    @map(name: "provider_id")
+  providerAccountId  String    @map(name: "provider_account_id")
+  refreshToken       String?   @map(name: "refresh_token")
+  accessToken        String?   @map(name: "access_token")
+  accessTokenExpires DateTime? @map(name: "access_token_expires")
+  createdAt          DateTime  @default(now()) @map(name: "created_at")
+  updatedAt          DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([providerId], name: "providerId")
+  @@index([userId], name: "userId")
+  @@map(name: "accounts")
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @map(name: "user_id")
+  expires      DateTime
+  sessionToken String   @unique @map(name: "session_token")
+  accessToken  String   @unique @map(name: "access_token")
+  createdAt    DateTime @default(now()) @map(name: "created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map(name: "updated_at")
+
+  @@map(name: "sessions")
+}
+
+model User {
+  id                String    @id @default(uuid())
+  firstName         String    @map(name: "first_name")
+  lastName          String    @map(name: "last_name")
+  email             String    @unique
+  emailVerified     DateTime? @map(name: "email_verified")
+  verificationToken String?   @map(name: "verification_token")
+  phone             String
+  resetToken        String?   @map(name: "reset_token")
+  resetTokenExpires DateTime? @map(name: "reset_token_expires")
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
