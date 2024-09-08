@@ -15,13 +15,11 @@ export default function DocsLayout({
         ? "text-lg font-bold mb-3"
         : "text-base font-semibold mb-2";
 
-    const currentPath = [
-      ...path,
-      category.name.toLowerCase().replace(/ /g, "-"),
-    ];
+    const folderName = category.path.split("/").pop() || "";
+    const currentPath = [...path, folderName];
 
     return (
-      <div key={category.name || "root"} className="mb-12">
+      <div key={category.path || "root"} className="mb-12">
         {category.name && <h3 className={titleClass}>{category.name}</h3>}
         <ul className="space-y-2 ml-4">
           {category.files.map((file) => (
@@ -44,7 +42,7 @@ export default function DocsLayout({
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 flex">
+    <div className="container mx-auto px-4 py-8 flex my-24">
       <aside className="w-64 pr-4">
         <nav className="space-y-4">
           {structure.map((category) => renderCategory(category))}

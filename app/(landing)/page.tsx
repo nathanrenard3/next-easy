@@ -12,19 +12,16 @@ import { CallToActionTwo } from "@/templates/landing/calls-to-action/CallToActio
 
 async function Page() {
   return (
-    <>
-      <HeroOne />
-      <FeaturesOne />
-      {/* <HeroTwo />
-      <FeaturesTwo /> */}
+    <div className="-my-24">
+      <HeroTwo />
+      <FeaturesTwo />
       <StatisticsOne />
       <TestimonialsOne />
       <PricingsOne />
       <QuestionsOne />
       <SocialsProofsOne />
-      {/* <CallToActionOne /> */}
       <CallToActionTwo />
-    </>
+    </div>
   );
 }
 

@@ -13,9 +13,9 @@ const HeroTwo = () => {
     >
       {/* Lights */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full filter blur-[100px] transform translate-x-1/3 -translate-y-1/4" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/20 rounded-full filter blur-[100px] transform -translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full filter blur-[120px] transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 opacity-50 md:opacity-100 rounded-full filter blur-[100px] transform translate-x-1/3 -translate-y-1/4" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/20 opacity-50 md:opacity-100 rounded-full filter blur-[100px] transform -translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-accent/20 opacity-50 md:opacity-100 rounded-full filter blur-[120px] transform -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10">
