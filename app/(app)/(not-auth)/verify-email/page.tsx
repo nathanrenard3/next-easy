@@ -2,6 +2,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { Metadata } from "next";
+import { config } from "@/config";
+
+export const metadata: Metadata = {
+  title: `${config.name} - Verify email`,
+};
 
 export default async function VerifyEmail({
   searchParams,

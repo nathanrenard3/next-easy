@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { Metadata } from "next";
+import { config } from "@/config";
+
+export const metadata: Metadata = {
+  title: `${config.name} - Settings`,
+};
 
 export default async function Layout({
   children,

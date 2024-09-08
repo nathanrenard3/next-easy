@@ -1,4 +1,10 @@
 import FormRegister from "./FormRegister";
+import { Metadata } from "next";
+import { config } from "@/config";
+
+export const metadata: Metadata = {
+  title: `${config.name} - Register`,
+};
 
 export default function Register() {
   return (

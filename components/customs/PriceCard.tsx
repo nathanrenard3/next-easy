@@ -25,7 +25,7 @@ export default function PriceCard({ price, isPopular }: PriceCardProps) {
   return (
     <div
       className={cn(
-        "relative flex w-full max-w-[400px] flex-col gap-4 overflow-hidden rounded-2xl border p-4 text-black bg-white",
+        "relative flex w-full flex-col gap-4 overflow-hidden rounded-2xl border p-4 sm:p-6 text-black bg-white",
         {
           "border-2 border-primary/75 shadow shadow-neutral-500/50": isPopular,
         }

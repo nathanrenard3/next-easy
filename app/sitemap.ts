@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/mdx";
 
+const url = process.env.URL_FRONT || "";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
 
   const blogPosts = posts.map((post) => ({
-    url: `https://nexteasy.io/blog/${post.slug}`,
+    url: `${url}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -13,13 +15,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://nexteasy.io",
+      url: url,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
     {
-      url: "https://nexteasy.io/blog",
+      url: `${url}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,

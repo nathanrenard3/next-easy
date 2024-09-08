@@ -82,11 +82,11 @@ type Props = {
 
 const Navbar = ({ isSignIn }: Props) => {
   return (
-    <header className="container flex items-center justify-between py-4">
+    <header className="absolute top-0 left-0 right-0 w-full z-50 container flex items-center justify-between py-4">
       <div className="flex items-center">
         <Link href="/">
           <Image
-            className="z-50 w-[100px] md:w-[140px]"
+            className="z-50 w-[120px] md:w-[140px]"
             src="/logo.svg"
             alt="logo"
             width={120}
@@ -100,7 +100,7 @@ const Navbar = ({ isSignIn }: Props) => {
       </div>
 
       <div className="flex items-center">
-        <Button asChild variant="default" size="lg" className="hidden md:flex">
+        <Button asChild variant="default" size="lg" className="hidden md:flex ">
           <Link
             href={isSignIn ? "/dashboard" : "/sign-in"}
             className="mr-3 lg:mr-0"
@@ -111,7 +111,11 @@ const Navbar = ({ isSignIn }: Props) => {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" variant="outline" className="md:hidden">
+            <Button
+              size="icon"
+              variant="outline"
+              className="md:hidden bg-white/50"
+            >
               <HamburgerMenuIcon />
             </Button>
           </SheetTrigger>

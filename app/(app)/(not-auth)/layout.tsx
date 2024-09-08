@@ -1,12 +1,7 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { config } from "@/config";
-
-export const metadata: Metadata = {
-  title: `My Hub - ${config.name}`,
-};
 
 export default function Layout({
   children,
@@ -24,7 +19,7 @@ export default function Layout({
       <div className="hidden lg:block lg:col-span-2 bg-primary h-full">
         <div className="flex flex-col items-center justify-center h-full">
           <h1 className="uppercase text-2xl lg:text-3xl text-center font-bold text-white mb-8">
-            Access to my Hub
+            Access to {config.name}
           </h1>
         </div>
       </div>

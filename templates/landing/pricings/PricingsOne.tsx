@@ -4,10 +4,11 @@ import { config } from "@/config";
 
 export function PricingsOne() {
   const pricing = config.stripe.products;
+  const { title, description } = config.landing.pricings;
 
   return (
-    <section id="pricing" className="relative container">
-      <div className="mx-auto flex max-w-screen-xl flex-col gap-8 px-4 py-14 md:px-8">
+    <section id="pricing" className="container relative w-full">
+      <div className="mx-auto flex max-w-screen-xl flex-col gap-4 md:gap-8 px-4 py-14 md:px-8">
         <div className="flex flex-col items-center gap-y-2 justify-center text-center">
           <FadeText
             className="font-bold text-primary uppercase text-base lg:text-lg"
@@ -15,7 +16,7 @@ export function PricingsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text="Pricing"
+            text={title}
           />
           <FadeText
             className="font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -23,17 +24,17 @@ export function PricingsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text="An offer tailored to your needs"
+            text={description}
           />
         </div>
 
-        <div className="mt-8">
-          <div className="mx-auto grid w-full justify-center gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {pricing.map((price, idx) => (
+        <div className="mt-8 w-full">
+          <div className="grid w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {pricing.map((price) => (
               <PriceCard
                 key={price.priceId}
                 price={price}
-                isPopular={idx === 1}
+                isPopular={price.mostPopular}
               />
             ))}
           </div>

@@ -2,6 +2,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import FormSignIn from "./FormSignIn";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+import { config } from "@/config";
+
+export const metadata: Metadata = {
+  title: `${config.name} - Sign in`,
+};
 
 const SignIn = async () => {
   const session = await getServerSession(authOptions);

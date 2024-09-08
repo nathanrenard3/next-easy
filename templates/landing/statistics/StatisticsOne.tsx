@@ -4,29 +4,7 @@ import { FadeText } from "@/components/magicui/fade-text";
 import NumberTicker from "@/components/magicui/number-ticker";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const statistics = [
-  {
-    value: 7,
-    label: "Hours saved on initial project setup",
-    suffix: "+",
-  },
-  {
-    value: 30,
-    label: "Pre-built components ready to use",
-    suffix: "+",
-  },
-  {
-    value: 50,
-    label: "Faster development time",
-    suffix: "%",
-  },
-  {
-    value: 99,
-    label: "Lighthouse score for performance",
-    suffix: "",
-  },
-];
+import { config } from "@/config";
 
 export const StatisticsOne = () => {
   const ref = useRef(null);
@@ -44,7 +22,7 @@ export const StatisticsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text="Key Metrics"
+          text={config.landing.statistics.title}
         />
         <FadeText
           className="font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -52,14 +30,14 @@ export const StatisticsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text="The Impact of Our Next.js Boilerplate"
+          text={config.landing.statistics.description}
         />
       </div>
       <div
         ref={ref}
-        className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+        className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-24"
       >
-        {statistics.map((stat, index) => (
+        {config.landing.statistics.list.map((stat, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -69,14 +47,14 @@ export const StatisticsOne = () => {
           >
             <span className="text-4xl lg:text-6xl font-bold text-primary mb-2">
               <NumberTicker
-                value={stat.value}
+                value={parseInt(stat.description)}
                 direction="up"
                 className="text-primary"
               />
-              {stat.suffix}
+              {stat.suffix && <span>{stat.suffix}</span>}
             </span>
             <span className="text-sm lg:text-base text-gray-600">
-              {stat.label}
+              {stat.title}
             </span>
           </motion.div>
         ))}

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+const url = process.env.URL_FRONT || "";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -7,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://nexteasy.io/sitemap.xml",
+    sitemap: `${url}/sitemap.xml`,
   };
 }
