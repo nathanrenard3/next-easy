@@ -1,8 +1,8 @@
-import BlogList from "@/features/landing/blog/BlogList";
+import BlogList from "@/templates/blog/BlogList";
 import { getAllPosts } from "@/lib/mdx";
 import { FadeText } from "@/components/magicui/fade-text";
 import { Metadata } from "next";
-
+import { config } from "@/config";
 export const metadata: Metadata = {
   title: "Blog - NextEasy",
   description:
@@ -21,15 +21,13 @@ export default async function BlogPage() {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text="Our Blog"
+          text={config.blog.title}
         />
         <h1 className="text-3xl lg:text-5xl font-extrabold mb-4">
-          Insights for Next.js Developers
+          {config.blog.subtitle}
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Stay informed about the latest trends in Next.js development, best
-          practices for using our boilerplate, and tips to accelerate your
-          project development.
+          {config.blog.description}
         </p>
       </div>
 

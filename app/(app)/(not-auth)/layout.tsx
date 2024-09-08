@@ -14,7 +14,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className="w-full h-screen grid lg:grid-cols-5 lg:gap-20">
+    <section className="w-full h-screen grid lg:grid-cols-5 lg:gap-20 bg-gray-50">
       <Link
         href="/"
         className="absolute top-6 left-6 text-primary lg:text-muted z-50"

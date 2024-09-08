@@ -4,16 +4,7 @@ import { Post } from "@/types/blog-post";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Metadata } from "next";
-import {
-  H1,
-  H2,
-  H3,
-  P,
-  UL,
-  OL,
-  LI,
-  A,
-} from "@/features/landing/blog/MdxComponents";
+import { H1, H2, H3, P, UL, OL, LI, A } from "@/templates/blog/MdxComponents";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";

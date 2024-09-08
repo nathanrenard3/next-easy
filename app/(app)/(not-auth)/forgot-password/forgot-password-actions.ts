@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "@/lib/db/prisma";
+import prisma from "@/lib/prisma";
 import { sendResetPasswordEmail } from "@/lib/resend";
 
 interface ForgotPasswordProps {

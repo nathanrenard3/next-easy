@@ -7,6 +7,23 @@ export const config = {
     instagram: "https://www.instagram.com/nexteasy",
     linkedin: "https://www.linkedin.com/nexteasy",
   },
+  // Blog configuration
+  blog: {
+    display: true,
+    title: "NextEasy Blog",
+    subtitle: "The latest news and updates from the NextEasy team",
+    description:
+      "Stay informed about the latest trends in Next.js development, best practices for using our boilerplate, and tips to accelerate your project development.",
+    postsPerPage: 6,
+    // Card meta configuration (what is displayed on the blog card)
+    cardMeta: {
+      title: true,
+      image: true,
+      date: true,
+      category: true,
+      excerpt: true,
+    },
+  },
   // Stripe configuration
   stripe: {
     // Configure the products that are available for purchase (subscription)
@@ -58,13 +75,15 @@ export const config = {
   },
   // Email configuration
   email: {
-    from: "noreply@nexteasy.fr",
+    from: "noreply@nexteasy.fr", // Use for sending emails in production
     templates: {
       welcome: {
         subject: "Welcome to NextEasy platform",
+        template: "/emails/register.tsx",
       },
       resetPassword: {
         subject: "Reset your password",
+        template: "/emails/reset-password.tsx",
       },
     },
   },

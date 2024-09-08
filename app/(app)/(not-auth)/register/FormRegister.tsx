@@ -17,7 +17,7 @@ import { useState } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { registerAction } from "@/lib/db/actions/register-actions";
+import { registerAction } from "./register-actions";
 import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
 import {
   Dialog,
@@ -26,6 +26,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 
 const schema = z.object({
   firstName: z.string().min(1, {
@@ -208,6 +209,13 @@ const FormRegister = () => {
           </Button>
         </form>
       </Form>
+
+      <div className="mt-4 text-center">
+        <span className="text-sm">Already have an account?</span>
+        <Button variant="link" asChild className="px-2">
+          <Link href="/sign-in">Sign in</Link>
+        </Button>
+      </div>
 
       <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
         <DialogContent>

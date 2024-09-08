@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { motion, useInView } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
-const HeroSection = () => {
+const HeroOne = () => {
   const fadeInRef = useRef(null);
   const fadeInInView = useInView(fadeInRef, {
     once: true,
@@ -154,4 +154,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroOne;

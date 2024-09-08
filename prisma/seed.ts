@@ -1,4 +1,4 @@
-import prisma from "../lib/db/prisma";
+import prisma from "../lib/prisma";
 import { config } from "../config";
 import { hash } from "bcrypt";
 

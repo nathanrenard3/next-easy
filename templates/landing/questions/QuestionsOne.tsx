@@ -6,7 +6,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-const Questions = () => {
+const QuestionsOne = () => {
   const questions = [
     {
       question: "What technologies are included in this Next.js boilerplate?",
@@ -87,4 +87,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default QuestionsOne;

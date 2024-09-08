@@ -13,7 +13,7 @@ const SignIn = async () => {
   return (
     <div>
       <h3 className="text-2xl text-center lg:text-left font-bold mb-8">
-        Sign In to your account
+        Sign in to your account
       </h3>
       <FormSignIn />
     </div>

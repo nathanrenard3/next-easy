@@ -35,10 +35,11 @@ export async function sendRegisterEmail(
   verificationToken: string
 ) {
   const verificationUrl = `${process.env.URL_FRONT}/verify-email?token=${verificationToken}`;
+  const Template = require(config.email.templates.welcome.template).default;
   await sendEmail({
     to: email,
     subject: config.email.templates.welcome.subject,
-    react: Register({ name, url: verificationUrl }),
+    react: Template({ name, url: verificationUrl }),
   });
 }
 
@@ -48,9 +49,11 @@ export async function sendResetPasswordEmail(
   resetToken: string
 ) {
   const resetUrl = `${process.env.URL_FRONT}/reset-password?token=${resetToken}`;
+  const Template = require(config.email.templates.resetPassword
+    .template).default;
   await sendEmail({
     to: email,
     subject: config.email.templates.resetPassword.subject,
-    react: ResetPassword({ url: resetUrl, name }),
+    react: Template({ url: resetUrl, name }),
   });
 }

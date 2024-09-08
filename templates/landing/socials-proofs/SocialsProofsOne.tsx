@@ -1,7 +1,7 @@
 import { FadeText } from "@/components/magicui/fade-text";
 import Image from "next/image";
 
-const Partners = () => {
+const SocialsProofsOne = () => {
   const partners = [
     {
       name: "Example Tech 1",
@@ -69,4 +69,4 @@ const Partners = () => {
   );
 };
 
-export default Partners;
+export default SocialsProofsOne;

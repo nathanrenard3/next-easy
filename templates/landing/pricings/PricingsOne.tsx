@@ -2,7 +2,7 @@ import PriceCard from "@/components/customs/PriceCard";
 import { FadeText } from "@/components/magicui/fade-text";
 import { config } from "@/config";
 
-export function Pricing() {
+export function PricingsOne() {
   const pricing = config.stripe.products;
 
   return (

@@ -1,23 +1,23 @@
-import HeroSection from "@/features/landing/home/HeroSection";
-import Features from "@/features/landing/home/Features";
-import { Testimonials } from "@/features/landing/home/Testimonials";
-import { Pricing } from "@/features/landing/home/Pricing";
-import Questions from "@/features/landing/home/Questions";
-import { CallToAction } from "@/features/landing/home/CallToAction";
-import Partners from "@/features/landing/home/Partners";
-import Statistics from "@/features/landing/home/Statistics";
+import HeroOne from "@/templates/landing/heros/HeroOne";
+import { CallToActionOne } from "@/templates/landing/calls-to-action/CallToActionOne";
+import SocialsProofsOne from "@/templates/landing/socials-proofs/SocialsProofsOne";
+import { PricingsOne } from "@/templates/landing/pricings/PricingsOne";
+import FeaturesOne from "@/templates/landing/features/FeaturesOne";
+import StatisticsOne from "@/templates/landing/statistics/StatisticsOne";
+import { TestimonialsOne } from "@/templates/landing/testimonials/TestimonialsOne";
+import QuestionsOne from "@/templates/landing/questions/QuestionsOne";
 
 async function Page() {
   return (
     <>
-      <HeroSection />
-      <Features />
-      <Statistics />
-      <Testimonials />
-      <Pricing />
-      <Questions />
-      <Partners />
-      <CallToAction />
+      <HeroOne />
+      <FeaturesOne />
+      <StatisticsOne />
+      <TestimonialsOne />
+      <PricingsOne />
+      <QuestionsOne />
+      <SocialsProofsOne />
+      <CallToActionOne />
       <div className="h-10"></div> {/* Space between section and footer */}
     </>
   );

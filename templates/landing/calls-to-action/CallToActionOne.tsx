@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRight, Rocket } from "lucide-react";
 import Link from "next/link";
 
-export function CallToAction() {
+export function CallToActionOne() {
   return (
     <section id="cta">
       <div className="container">

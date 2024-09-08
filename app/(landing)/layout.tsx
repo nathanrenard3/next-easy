@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import Footer from "@/templates/landing/Footer";
-import Navbar from "@/templates/landing/Navbar";
 import { getServerSession } from "next-auth";
 import { Poppins } from "next/font/google";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
+import Navbar from "@/templates/landing/Navbar";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],

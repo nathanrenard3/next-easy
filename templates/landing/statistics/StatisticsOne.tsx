@@ -28,7 +28,7 @@ const statistics = [
   },
 ];
 
-export const Statistics = () => {
+export const StatisticsOne = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
@@ -85,4 +85,4 @@ export const Statistics = () => {
   );
 };
 
-export default Statistics;
+export default StatisticsOne;

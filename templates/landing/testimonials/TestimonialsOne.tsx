@@ -200,7 +200,7 @@ const testimonials = [
   },
 ];
 
-export function Testimonials() {
+export function TestimonialsOne() {
   return (
     <section id="testimonials" className="container">
       <div className="pt-16 lg:pt-24">

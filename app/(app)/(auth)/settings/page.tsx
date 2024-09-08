@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
-import FormUserInformations from "@/features/settings/FormUserInformations";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import FormUserInformations from "./FormUserInformations";
 
 const Settings = async () => {
   const session = await getServerSession(authOptions);

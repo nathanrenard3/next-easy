@@ -19,7 +19,7 @@ import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { generateAndSendVerificationToken } from "@/lib/db/actions/register-actions";
+import { generateAndSendVerificationToken } from "../register/register-actions";
 
 const formSchema = z.object({
   email: z.string().email({

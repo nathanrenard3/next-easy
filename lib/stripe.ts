@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import Stripe from "stripe";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
-import prisma from "./db/prisma";
+import prisma from "./prisma";
 import { config } from "@/config";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;

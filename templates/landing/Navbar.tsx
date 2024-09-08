@@ -16,24 +16,25 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { config } from "@/config";
 
-const menuItems = [
+let menuItems = [
   {
     title: "Features",
     href: "/#features",
-    items: undefined,
   },
   {
     title: "Pricing",
     href: "/#pricing",
-    items: undefined,
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-    items: undefined,
   },
 ];
+
+if (config.blog.display) {
+  menuItems.push({
+    title: "Blog",
+    href: "/blog",
+  });
+}
 
 const DesktopNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
   <NavigationMenu>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import prisma from "@/lib/db/prisma";
+import prisma from "@/lib/prisma";
+import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
 
 export default async function VerifyEmail({
   searchParams,
@@ -41,31 +42,55 @@ export default async function VerifyEmail({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-2xl text-center lg:text-left font-bold mb-4">
-        Email Verification
-      </h1>
-      {verificationStatus === "pending" && <p>Verifying your email...</p>}
-      {verificationStatus === "success" && (
-        <>
-          <p className="text-green-600 mb-4">
-            Your email has been successfully verified!
-          </p>
-          <Button asChild>
-            <Link href="/sign-in">Sign In</Link>
-          </Button>
-        </>
-      )}
-      {verificationStatus === "error" && (
-        <p className="text-destructive">
-          An error occurred while verifying your email. Please try again.
-        </p>
-      )}
-      {verificationStatus === "missing_token" && (
-        <p className="text-destructive">
-          Verification token is missing. Please use the link provided in the
-          email.
-        </p>
-      )}
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-center text-primary">
+          Email Verification
+        </h1>
+
+        {verificationStatus === "pending" && (
+          <div className="flex flex-col items-center space-y-4">
+            <AlertCircle className="w-16 h-16 text-yellow-500 animate-pulse" />
+            <p className="text-lg text-gray-600">Verifying your email...</p>
+          </div>
+        )}
+
+        {verificationStatus === "success" && (
+          <div className="flex flex-col items-center space-y-4">
+            <CheckCircle className="w-16 h-16 text-green-500" />
+            <p className="text-lg text-green-600 text-center">
+              Your email has been successfully verified!
+            </p>
+            <Button asChild className="w-full">
+              <Link href="/sign-in">Sign In</Link>
+            </Button>
+          </div>
+        )}
+
+        {verificationStatus === "error" && (
+          <div className="flex flex-col items-center space-y-4">
+            <XCircle className="w-16 h-16 text-red-500" />
+            <p className="text-lg text-red-600 text-center">
+              An error occurred while verifying your email. Please try again.
+            </p>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/sign-in">Back to Sign In</Link>
+            </Button>
+          </div>
+        )}
+
+        {verificationStatus === "missing_token" && (
+          <div className="flex flex-col items-center space-y-4">
+            <AlertCircle className="w-16 h-16 text-yellow-500" />
+            <p className="text-lg text-yellow-600 text-center">
+              Verification token is missing. Please use the link provided in the
+              email.
+            </p>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/sign-in">Back to Sign In</Link>
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

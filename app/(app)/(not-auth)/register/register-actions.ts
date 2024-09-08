@@ -1,7 +1,7 @@
 "use server";
 
 import { stripe } from "@/lib/stripe";
-import prisma from "../prisma";
+import prisma from "../../../../lib/prisma";
 import bcrypt from "bcrypt";
 import { sendRegisterEmail } from "@/lib/resend";
 
