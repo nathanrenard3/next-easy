@@ -226,6 +226,11 @@ export const config: Config = {
       excerpt: true,
     },
   },
+  // Documentation configuration
+  documentation: {
+    display: true,
+    baseUrl: "/docs/introduction", // The base url is where the button to access the documentation redirect
+  },
   // Stripe configuration
   stripe: {
     // Configure the products that are available for purchase (subscription)

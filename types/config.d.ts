@@ -121,6 +121,10 @@ type Config = {
       excerpt: boolean;
     };
   };
+  documentation: {
+    display: boolean;
+    baseUrl: string;
+  };
   stripe: {
     products: Product[];
     mode: "payment" | "subscription";

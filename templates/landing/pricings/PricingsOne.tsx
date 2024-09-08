@@ -1,4 +1,4 @@
-import PriceCard from "@/components/customs/PriceCard";
+import PriceCard from "@/components/ui/price-card";
 import { FadeText } from "@/components/magicui/fade-text";
 import { config } from "@/config";
 

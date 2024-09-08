@@ -1,5 +1,5 @@
 import BlogList from "@/templates/blog/BlogList";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/blog";
 import { FadeText } from "@/components/magicui/fade-text";
 import { Metadata } from "next";
 import { config } from "@/config";

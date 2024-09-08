@@ -24,28 +24,6 @@ export function capitalizeFirstLetter(string: string): string {
 }
 
 /**
- * Format the given price in cents to a string representing the price in euros.
- *
- * This function converts the input price in cents to euros by dividing it by 100.
- * It then formats the resulting value using the French locale ("fr-FR") with the
- * currency style set to Euros ("EUR").
- *
- * @param {number} price - The price in cents to be formatted.
- * @returns {string} - The formatted price in euros.
- *
- * @example
- * // returns "0,50 €"
- * formatPrice(50);
- */
-export function formatPrice(price: number): string {
-  const priceInEuros = price / 100;
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-  }).format(priceInEuros);
-}
-
-/**
  * Check if a given string is in the format HH:MM.
  *
  * This function verifies if the input string matches the HH:MM format, where HH is

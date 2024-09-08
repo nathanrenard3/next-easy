@@ -36,6 +36,13 @@ if (config.blog.display) {
   });
 }
 
+if (config.documentation.display) {
+  menuItems.push({
+    title: "Documentation",
+    href: config.documentation.baseUrl,
+  });
+}
+
 const DesktopNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
   <NavigationMenu>
     <NavigationMenuList className="flex flex-row items-start">
