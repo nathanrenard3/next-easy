@@ -8,6 +8,8 @@ import { motion, useInView } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+
 const HeroOne = () => {
   const fadeInRef = useRef(null);
   const fadeInInView = useInView(fadeInRef, {
@@ -15,10 +17,18 @@ const HeroOne = () => {
   });
 
   const [url, setUrl] = useState("");
+  const { theme, systemTheme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState<string | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     setUrl(window.location.origin);
   }, []);
+
+  useEffect(() => {
+    setCurrentTheme(theme === "system" ? systemTheme : theme);
+  }, [theme, systemTheme]);
 
   const fadeUpVariants = {
     initial: {
@@ -29,6 +39,10 @@ const HeroOne = () => {
       opacity: 1,
       y: 0,
     },
+  };
+
+  const getParticleColor = () => {
+    return currentTheme === "dark" ? "#ffffff" : "hsl(var(--primary))";
   };
 
   return (
@@ -54,7 +68,7 @@ const HeroOne = () => {
               </motion.h1>
 
               <motion.p
-                className="text-balance tracking-tight text-gray-400 text-base lg:text-lg mb-2"
+                className="text-balance tracking-tight text-muted-foreground text-base lg:text-lg mb-2"
                 animate={fadeInInView ? "animate" : "initial"}
                 variants={fadeUpVariants}
                 initial={false}
@@ -85,9 +99,9 @@ const HeroOne = () => {
                 <Link
                   href={"#features"}
                   className={cn(
-                    "bg-primary text-muted",
+                    "bg-primary text-primary-foreground",
                     "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-6 py-5 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
-                    "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
+                    "transform-gpu ring-offset-background transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
                     "text-sm lg:text-base"
                   )}
                 >
@@ -107,14 +121,14 @@ const HeroOne = () => {
               ease: [0.21, 0.47, 0.32, 0.98],
               type: "spring",
             }}
-            className="relative flex mt-2 lg:mt-14 h-full lg:w-10/12 rounded-xl after:absolute after:inset-0 after:z-10 after:[background:linear-gradient(to_top,#fff_0.5%,transparent)] sm:after:[background:linear-gradient(to_top,#fff_10%,transparent)]"
+            className="relative flex mt-2 lg:mt-14 h-full lg:w-10/12 rounded-xl after:absolute after:inset-0 after:z-10 after:[background:linear-gradient(to_top,var(--background)_0.5%,transparent)] sm:after:[background:linear-gradient(to_top,var(--background)_10%,transparent)]"
           >
             <div
               className={cn(
                 "absolute inset-0 bottom-1/2 h-full w-full transform-gpu [filter:blur(120px)] -z-10",
-
-                // light styles
-                "[background-image:linear-gradient(to_bottom,#1D283A,transparent_20%)]"
+                currentTheme === "dark"
+                  ? "bg-gradient-to-b from-white/20 to-transparent"
+                  : "bg-gradient-to-b from-primary/20 to-transparent"
               )}
             />
 
@@ -125,8 +139,12 @@ const HeroOne = () => {
             />
 
             <BorderBeam
-              colorFrom="#1D283A"
-              colorTo="#1D283A"
+              colorFrom={
+                currentTheme === "dark" ? "#ffffff" : "hsl(var(--primary))"
+              }
+              colorTo={
+                currentTheme === "dark" ? "#ffffff" : "hsl(var(--primary))"
+              }
               size={250}
               delay={9}
               duration={12}
@@ -134,14 +152,16 @@ const HeroOne = () => {
           </motion.div>
         </div>
 
-        <Particles
-          className="absolute inset-0 -z-10 opacity-50 lg:opacity-100"
-          quantity={250}
-          ease={80}
-          size={0.7}
-          color={"1D283A"}
-          refresh
-        />
+        {currentTheme && (
+          <Particles
+            className="absolute inset-0 -z-10 opacity-50 lg:opacity-100"
+            quantity={150}
+            ease={80}
+            size={0.7}
+            color={getParticleColor()}
+            refresh={currentTheme === "dark"}
+          />
+        )}
       </div>
     </section>
   );

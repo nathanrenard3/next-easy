@@ -17,6 +17,11 @@ type EmailTemplate = {
 // Main type
 type Config = {
   name: string;
+  defaultTheme: "light" | "dark";
+  logo: {
+    light: string;
+    dark: string;
+  };
   socials: {
     twitter: Social;
     instagram: Social;

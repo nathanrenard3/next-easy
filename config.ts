@@ -1,6 +1,11 @@
 export const config: Config = {
   // App configuration
   name: "NextEasy",
+  defaultTheme: "light",
+  logo: {
+    light: "/logo-light.svg", // Logo for light theme
+    dark: "/logo-dark.svg", // Logo for dark theme
+  },
   // Socials configuration (for footer of landing page)
   socials: {
     twitter: "https://twitter.com/nexteasy", // null to hide

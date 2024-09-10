@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
@@ -17,6 +16,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { config } from "@/config";
+import ToogleTheme from "@/components/ui/toogle-theme";
+import Logo from "@/templates/landing/Logo";
 
 let menuItems = [
   {
@@ -92,14 +93,7 @@ const Navbar = ({ isSignIn }: Props) => {
     <header className="absolute top-0 left-0 right-0 w-full z-50 container flex items-center justify-between py-4">
       <div className="flex items-center">
         <Link href="/">
-          <Image
-            className="z-50 w-[120px] md:w-[140px]"
-            src="/logo.svg"
-            alt="logo"
-            width={120}
-            height={20}
-            priority
-          />
+          <Logo />
         </Link>
         <div className="hidden md:block ml-5 p-3">
           <DesktopNavigationMenu isSignIn={isSignIn} />
@@ -107,14 +101,22 @@ const Navbar = ({ isSignIn }: Props) => {
       </div>
 
       <div className="flex items-center">
-        <Button asChild variant="default" size="lg" className="hidden md:flex">
-          <Link
-            href={isSignIn ? "/dashboard" : "/sign-in"}
-            className="mr-3 lg:mr-0"
+        <div className="grid grid-cols-2 gap-2">
+          <Button
+            asChild
+            variant="default"
+            size="lg"
+            className="hidden md:flex"
           >
-            {isSignIn ? "Dashboard" : "Sign in"}
-          </Link>
-        </Button>
+            <Link
+              href={isSignIn ? "/dashboard" : "/sign-in"}
+              className="mr-3 lg:mr-0"
+            >
+              {isSignIn ? "Dashboard" : "Sign in"}
+            </Link>
+          </Button>
+          <ToogleTheme />
+        </div>
 
         <Sheet>
           <SheetTrigger asChild>

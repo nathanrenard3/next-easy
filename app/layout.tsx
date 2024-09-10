@@ -6,6 +6,7 @@ import { SessionProviderWrapper } from "@/providers/session-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import { config } from "@/config";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const name = config.name;
@@ -32,13 +33,15 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth">
       <body className={`${inter.className}`}>
-        <TooltipProvider>
-          <SessionProviderWrapper>
-            <main>{children}</main>
-            <Toaster />
-          </SessionProviderWrapper>
-        </TooltipProvider>
-        <Analytics />
+        <ThemeProvider attribute="class" defaultTheme={config.defaultTheme}>
+          <TooltipProvider>
+            <SessionProviderWrapper>
+              <main>{children}</main>
+              <Toaster />
+            </SessionProviderWrapper>
+          </TooltipProvider>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

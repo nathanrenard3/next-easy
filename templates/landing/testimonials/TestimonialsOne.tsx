@@ -26,7 +26,7 @@ export interface TestimonialCardProps {
   name: string;
   role: string;
   img?: string;
-  description: string; // Changed to string to match config
+  description: string;
   className?: string;
   [key: string]: any;
 }
@@ -42,12 +42,12 @@ export const TestimonialCard = ({
   <div
     className={cn(
       "mb-4 flex w-full cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-xl p-4",
-      "border border-neutral-200 bg-white",
+      "border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800",
       className
     )}
     {...props}
   >
-    <div className="select-none text-sm font-normal text-neutral-700 dark:text-neutral-400">
+    <div className="select-none text-sm font-normal text-neutral-700 dark:text-neutral-300">
       {description.split(". ").map((sentence, index) => (
         <p key={index}>
           {sentence.includes("70%") ||
@@ -68,12 +68,16 @@ export const TestimonialCard = ({
         src={img!}
         width={40}
         height={40}
-        className="h-10 w-10 rounded-full ring-1 ring-border ring-offset-4"
+        className="h-10 w-10 rounded-full ring-1 ring-border dark:ring-neutral-700 ring-offset-4 ring-offset-white dark:ring-offset-neutral-800"
       />
 
       <div>
-        <p className="font-medium text-neutral-500">{name}</p>
-        <p className="text-xs font-normal text-neutral-400">{role}</p>
+        <p className="font-medium text-neutral-500 dark:text-neutral-400">
+          {name}
+        </p>
+        <p className="text-xs font-normal text-neutral-400 dark:text-neutral-500">
+          {role}
+        </p>
       </div>
     </div>
   </div>
@@ -159,7 +163,7 @@ export function TestimonialsOne() {
             text="Testimonials"
           />
           <FadeText
-            className="scroll-m-96 font-extrabold tracking-tight text-2xl lg:text-5xl"
+            className="scroll-m-96 font-extrabold tracking-tight text-2xl lg:text-5xl text-foreground"
             direction="up"
             framerProps={{
               show: { transition: { delay: 0.2 } },
@@ -187,8 +191,8 @@ export function TestimonialsOne() {
                 </Marquee>
               ))}
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 w-full bg-gradient-to-t from-white from-20% "></div>
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 w-full bg-gradient-to-b from-white from-20%"></div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 w-full bg-gradient-to-t from-background via-background/50 to-transparent dark:from-primary/20 dark:via-primary/10 dark:to-transparent rounded-b-xl"></div>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 w-full bg-gradient-to-b from-background via-background/50 to-transparent dark:from-primary/20 dark:via-primary/10 dark:to-transparent rounded-t-xl"></div>
         </div>
       </div>
     </section>

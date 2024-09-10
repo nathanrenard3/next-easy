@@ -17,7 +17,7 @@ export function PricingsOne() {
             text="Pricing"
           />
           <FadeText
-            className="font-extrabold tracking-tight text-2xl lg:text-5xl"
+            className="font-extrabold tracking-tight text-2xl lg:text-5xl text-foreground"
             direction="up"
             framerProps={{
               show: { transition: { delay: 0.2 } },
@@ -38,11 +38,11 @@ export function PricingsOne() {
           </div>
         </div>
 
-        <div className="absolute top-36 md:top-24 -end-20 -z-10 w-48 h-48 bg-gradient-to-b from-primary-foreground via-primary-foreground to-background p-px rounded-lg">
-          <div className="w-48 h-48 rounded-lg bg-background/10" />
+        <div className="absolute top-36 md:top-24 -end-20 -z-10 w-48 h-48 bg-gradient-to-b from-primary/20 via-primary/10 to-transparent p-px rounded-lg">
+          <div className="w-48 h-48 rounded-lg bg-background/10 dark:bg-background/20" />
         </div>
-        <div className="absolute bottom-12 -start-20 -z-10 w-48 h-48 bg-gradient-to-b from-primary-foreground via-primary-foreground to-background p-px rounded-full">
-          <div className="w-48 h-48 rounded-full bg-background/10" />
+        <div className="absolute bottom-12 -start-20 -z-10 w-48 h-48 bg-gradient-to-b from-primary/20 via-primary/10 to-transparent p-px rounded-full">
+          <div className="w-48 h-48 rounded-full bg-background/10 dark:bg-background/20" />
         </div>
       </div>
     </section>
