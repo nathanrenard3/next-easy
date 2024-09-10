@@ -4,7 +4,6 @@ import { FadeText } from "@/components/magicui/fade-text";
 import NumberTicker from "@/components/magicui/number-ticker";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { config } from "@/config";
 
 export const StatisticsOne = () => {
   const ref = useRef(null);
@@ -12,6 +11,29 @@ export const StatisticsOne = () => {
     once: true,
     amount: 0.1,
   });
+
+  const statistics = [
+    {
+      title: "Setup Time Reduced",
+      suffix: "%",
+      description: "70",
+    },
+    {
+      title: "Development Speed Increase",
+      suffix: "%",
+      description: "40",
+    },
+    {
+      title: "Code Reusability",
+      suffix: "%",
+      description: "80",
+    },
+    {
+      title: "Time-to-Market Reduction",
+      suffix: "%",
+      description: "35",
+    },
+  ];
 
   return (
     <section id="statistics" className="container py-24">
@@ -22,7 +44,7 @@ export const StatisticsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={config.landing.statistics.title}
+          text="Impact on Development"
         />
         <FadeText
           className="font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -30,14 +52,14 @@ export const StatisticsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={config.landing.statistics.description}
+          text="How NextEasy boosts your project"
         />
       </div>
       <div
         ref={ref}
         className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-24"
       >
-        {config.landing.statistics.list.map((stat, index) => (
+        {statistics.map((stat, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}

@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { config } from "@/config";
-import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const HeroTwo = () => {
   return (
@@ -28,16 +29,27 @@ const HeroTwo = () => {
           >
             <div className="text-center lg:text-left">
               <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 tracking-tight">
-                {config.landing.hero.title}
+                The best boilerplate to start your project easily and quickly
               </h1>
               <p className="text-xl text-muted-foreground max-w-[600px] mx-auto lg:mx-0">
-                {config.landing.hero.description.title}
+                Kickstart your project with our optimized Next.js boilerplate,
+                built to accelerate development and provide the tools you need
+                for scalable applications.
               </p>
             </div>
             <div className="flex justify-center lg:justify-start">
-              <Button variant="default" size="lg">
-                {config.landing.hero.callToAction.label}
-              </Button>
+              <Link
+                href={"#features"}
+                className={cn(
+                  "bg-primary text-muted",
+                  "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-6 py-5 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
+                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
+                  "text-sm lg:text-base"
+                )}
+              >
+                Get started
+                <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+              </Link>
             </div>
           </motion.div>
           <motion.div
@@ -50,7 +62,7 @@ const HeroTwo = () => {
               alt="Application screenshot"
               className="aspect-video object-cover rounded-lg shadow-lg relative z-10"
               height={366}
-              src={config.landing.hero.image}
+              src="https://placehold.co/1920x1080?text=Hero+Image"
               width={550}
               priority
               unoptimized

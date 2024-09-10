@@ -6,7 +6,6 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { config } from "@/config";
 
 interface FeatureProps {
   number: string;
@@ -76,6 +75,33 @@ const FeatureCard = ({
 };
 
 const FeaturesOne = () => {
+  const features = [
+    {
+      title: "Optimized Architecture",
+      description:
+        "A carefully organized project structure for optimal scalability and maintainability, enabling rapid and efficient development.",
+      image: "https://placehold.co/1920x1080?text=Optimized+Architecture",
+      callToAction: null,
+    },
+    {
+      title: "Ready-to-Use Components",
+      description:
+        "A rich library of reusable and customizable components designed to speed up your user interface development.",
+      image: "https://placehold.co/1920x1080?text=Ready-to-Use+Components",
+      callToAction: {
+        label: "Get started",
+        href: "/dashboard",
+      },
+    },
+    {
+      title: "Easy Integration",
+      description:
+        "Pre-established configurations for authentication, state management, and APIs, allowing you to focus on your application's business logic.",
+      image: "https://placehold.co/1920x1080?text=Easy+Integration",
+      callToAction: null,
+    },
+  ];
+
   return (
     <section id="features" className="container grid gap-12 py-20">
       <div className="flex flex-col items-center gap-y-2 justify-center text-center">
@@ -85,7 +111,7 @@ const FeaturesOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={config.landing.features.title}
+          text="Features"
         />
         <FadeText
           className="scroll-m-96 font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -93,10 +119,10 @@ const FeaturesOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={config.landing.features.description}
+          text="Powerful tools to accelerate your development"
         />
       </div>
-      {config.landing.features.list.map((feature, index) => (
+      {features.map((feature, index) => (
         <FeatureCard
           key={index}
           number={`${index + 1}`}

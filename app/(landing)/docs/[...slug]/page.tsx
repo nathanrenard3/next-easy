@@ -2,11 +2,14 @@ import {
   Category,
   getDocumentationContent,
   getDocumentationStructure,
+  getPreviousAndNextPages,
 } from "@/lib/docs";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { H1, H2, H3, P, UL, OL, LI, A, CodeBlock } from "@/components/ui/mdx";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -29,6 +32,7 @@ export default async function DocPage({
   try {
     const fullPath = params.slug.join("/");
     const { data, content } = await getDocumentationContent(fullPath);
+    const { previous, next } = getPreviousAndNextPages(fullPath);
 
     const components = {
       h1: H1,
@@ -59,6 +63,29 @@ export default async function DocPage({
         </h1>
         <div className="prose prose-sm sm:prose md:prose-lg lg:prose-xl max-w-none">
           <MDXRemote source={content} components={components} />
+        </div>
+        <div className="mt-12 flex justify-between items-center">
+          {previous && (
+            <Link
+              href={`/docs/${previous.slug
+                .split("/")
+                .filter(Boolean)
+                .join("/")}`}
+              className="flex items-center text-primary hover:underline"
+            >
+              <ChevronLeft className="mr-2" />
+              <span>Previous: {previous.title}</span>
+            </Link>
+          )}
+          {next && (
+            <Link
+              href={`/docs/${next.slug.split("/").filter(Boolean).join("/")}`}
+              className="flex items-center text-primary hover:underline ml-auto"
+            >
+              <span>Next: {next.title}</span>
+              <ChevronRight className="ml-2" />
+            </Link>
+          )}
         </div>
       </article>
     );

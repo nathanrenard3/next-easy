@@ -3,9 +3,7 @@ import { FadeText } from "@/components/magicui/fade-text";
 import { config } from "@/config";
 
 export function PricingsOne() {
-  const pricing = config.stripe.products;
-  const { title, description } = config.landing.pricings;
-
+  const { products } = config.stripe;
   return (
     <section id="pricing" className="container relative w-full">
       <div className="mx-auto flex max-w-screen-xl flex-col gap-4 md:gap-8 px-4 py-14 md:px-8">
@@ -16,7 +14,7 @@ export function PricingsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={title}
+            text="Pricing"
           />
           <FadeText
             className="font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -24,13 +22,13 @@ export function PricingsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={description}
+            text="Choose the plan that best suits your needs"
           />
         </div>
 
         <div className="mt-8 w-full">
           <div className="grid w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {pricing.map((price) => (
+            {products.map((price) => (
               <PriceCard
                 key={price.priceId}
                 price={price}

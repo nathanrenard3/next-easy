@@ -3,11 +3,8 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { config } from "@/config";
 
 export function CallToActionTwo() {
-  const { title, description, callToAction } = config.landing.callToAction;
-
   return (
     <section id="cta">
       <div className="px-5 lg:px-0">
@@ -15,10 +12,10 @@ export function CallToActionTwo() {
           <div className="order-2 flex flex-col gap-y-5 p-7 md:order-1 lg:p-10">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl/tight">
-                {title}
+                Ready to get started?
               </h2>
               <p className="max-w-[600px] text-neutral-500 dark:text-neutral-400 md:text-base/[1.5] lg:text-base/[1.5] xl:text-lg/[1.5]">
-                {description}
+                Join our platform and start your project today!
               </p>
             </div>
 
@@ -31,27 +28,21 @@ export function CallToActionTwo() {
               size="lg"
               asChild
             >
-              <Link
-                href={callToAction.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="/register" target="_blank" rel="noopener noreferrer">
                 <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96" />
-                <p>{callToAction.label}</p>
+                <p>Get started</p>
                 <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>
-          {config.landing.callToAction.image && (
-            <div className="order-1">
-              <Image
-                src={config.landing.callToAction.image}
-                alt="Call to action"
-                width={600}
-                height={400}
-              />
-            </div>
-          )}
+          <div className="order-1">
+            <Image
+              src="https://placehold.co/600x400/png"
+              alt="Call to action"
+              width={600}
+              height={400}
+            />
+          </div>
         </div>
       </div>
     </section>

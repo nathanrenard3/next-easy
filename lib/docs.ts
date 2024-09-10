@@ -57,7 +57,11 @@ function getCategory(
   const files: DocFile[] = [];
   const categories: Category[] = [];
 
-  const currentPath = [...parentPath, path.basename(categoryPath)];
+  const currentPath = [...parentPath];
+  const folderName = path.basename(categoryPath);
+  if (folderName !== "docs" && !currentPath.includes(folderName)) {
+    currentPath.push(folderName);
+  }
 
   items.forEach((item) => {
     const itemPath = path.join(categoryPath, item);
@@ -69,7 +73,7 @@ function getCategory(
   });
 
   return {
-    name: categoryInfo?.name || path.basename(categoryPath),
+    name: categoryInfo?.name || folderName,
     position: categoryInfo?.position || 0,
     files: files.sort((a, b) => (a.position || 0) - (b.position || 0)),
     categories: categories.sort((a, b) => a.position - b.position),
@@ -137,4 +141,66 @@ export function getAllDocumentationSlugs() {
       slug: file.slug,
     }))
   );
+}
+
+export function getPreviousAndNextPages(currentSlug: string): {
+  previous: PageInfo | null;
+  next: PageInfo | null;
+} {
+  const structure = getDocumentationStructure();
+  const flattenedPages = flattenStructure(structure);
+  const currentIndex = flattenedPages.findIndex(
+    (page) => page.slug === currentSlug
+  );
+
+  return {
+    previous: currentIndex > 0 ? flattenedPages[currentIndex - 1] : null,
+    next:
+      currentIndex < flattenedPages.length - 1
+        ? flattenedPages[currentIndex + 1]
+        : null,
+  };
+}
+
+function flattenStructure(structure: Category[]): PageInfo[] {
+  const flattened: PageInfo[] = [];
+
+  function traverse(category: Category, parentPath: string[] = []) {
+    category.files.forEach((file) => {
+      const slugParts = [...parentPath, file.slug]
+        .filter(Boolean)
+        .reduce((acc, part) => {
+          if (acc[acc.length - 1] !== part) {
+            acc.push(part);
+          }
+          return acc;
+        }, [] as string[]);
+
+      flattened.push({
+        title: file.title,
+        slug: slugParts.join("/"),
+      });
+    });
+
+    category.categories?.forEach((subCategory) => {
+      const newParentPath = [...parentPath, subCategory.path]
+        .filter(Boolean)
+        .reduce((acc, part) => {
+          if (acc[acc.length - 1] !== part) {
+            acc.push(part);
+          }
+          return acc;
+        }, [] as string[]);
+
+      traverse(subCategory, newParentPath);
+    });
+  }
+
+  structure.forEach((category) => traverse(category));
+  return flattened;
+}
+
+interface PageInfo {
+  title: string;
+  slug: string;
 }

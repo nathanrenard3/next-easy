@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
 import Image from "next/image";
 import { FadeText } from "@/components/magicui/fade-text";
-import { config } from "@/config"; // Import the config
 
 export const Highlight = ({
   children,
@@ -81,7 +80,71 @@ export const TestimonialCard = ({
 );
 
 export function TestimonialsOne() {
-  const { title, description, list } = config.landing.testimonials;
+  const testimonials = [
+    {
+      name: "Example 1",
+      role: "Frontend Developer",
+      img: "https://randomuser.me/api/portraits/women/12.jpg",
+      description:
+        "This Next.js boilerplate has been a game-changer for our development process. We've cut our initial setup time by 70% and significantly improved our project structure. Highly recommended for any React team.",
+    },
+    {
+      name: "Example 2",
+      role: "CTO at TechStartup",
+      img: "https://randomuser.me/api/portraits/men/45.jpg",
+      description:
+        "As a startup, we need to move fast. This boilerplate helps us stay ahead of the curve. Our development efficiency has improved by 50%, and we're shipping features faster than ever. An essential tool for any tech startup.",
+    },
+    {
+      name: "Example 3",
+      role: "Lead Developer at WebAgency",
+      img: "https://randomuser.me/api/portraits/women/83.jpg",
+      description:
+        "The pre-built components and optimized setup have made our projects more consistent and efficient. We've seen a 40% reduction in bug reports and a notable increase in client satisfaction. A must-have for web agencies.",
+    },
+    {
+      name: "Example 1",
+      role: "Frontend Developer",
+      img: "https://randomuser.me/api/portraits/women/12.jpg",
+      description:
+        "This Next.js boilerplate has been a game-changer for our development process. We've cut our initial setup time by 70% and significantly improved our project structure. Highly recommended for any React team.",
+    },
+    {
+      name: "Example 2",
+      role: "CTO at TechStartup",
+      img: "https://randomuser.me/api/portraits/men/45.jpg",
+      description:
+        "As a startup, we need to move fast. This boilerplate helps us stay ahead of the curve. Our development efficiency has improved by 50%, and we're shipping features faster than ever. An essential tool for any tech startup.",
+    },
+    {
+      name: "Example 3",
+      role: "Lead Developer at WebAgency",
+      img: "https://randomuser.me/api/portraits/women/83.jpg",
+      description:
+        "The pre-built components and optimized setup have made our projects more consistent and efficient. We've seen a 40% reduction in bug reports and a notable increase in client satisfaction. A must-have for web agencies.",
+    },
+    {
+      name: "Example 1",
+      role: "Frontend Developer",
+      img: "https://randomuser.me/api/portraits/women/12.jpg",
+      description:
+        "This Next.js boilerplate has been a game-changer for our development process. We've cut our initial setup time by 70% and significantly improved our project structure. Highly recommended for any React team.",
+    },
+    {
+      name: "Example 2",
+      role: "CTO at TechStartup",
+      img: "https://randomuser.me/api/portraits/men/45.jpg",
+      description:
+        "As a startup, we need to move fast. This boilerplate helps us stay ahead of the curve. Our development efficiency has improved by 50%, and we're shipping features faster than ever. An essential tool for any tech startup.",
+    },
+    {
+      name: "Example 3",
+      role: "Lead Developer at WebAgency",
+      img: "https://randomuser.me/api/portraits/women/83.jpg",
+      description:
+        "The pre-built components and optimized setup have made our projects more consistent and efficient. We've seen a 40% reduction in bug reports and a notable increase in client satisfaction. A must-have for web agencies.",
+    },
+  ];
 
   return (
     <section id="testimonials" className="container">
@@ -93,7 +156,7 @@ export function TestimonialsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={title}
+            text="Testimonials"
           />
           <FadeText
             className="scroll-m-96 font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -101,12 +164,12 @@ export function TestimonialsOne() {
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={description}
+            text="What Developers Say About Our Boilerplate"
           />
         </div>
         <div className="relative mt-6 max-h-[650px] overflow-hidden">
           <div className="gap-4 md:columns-2 xl:columns-3 2xl:columns-3">
-            {Array(Math.ceil(list.length / 3))
+            {Array(Math.ceil(testimonials.length / 3))
               .fill(0)
               .map((_, i) => (
                 <Marquee
@@ -118,7 +181,7 @@ export function TestimonialsOne() {
                     "[--duration:70s]": i === 3,
                   })}
                 >
-                  {list.slice(i * 3, (i + 1) * 3).map((card, idx) => (
+                  {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
                     <TestimonialCard {...card} key={idx} />
                   ))}
                 </Marquee>

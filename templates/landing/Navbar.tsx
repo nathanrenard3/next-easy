@@ -107,7 +107,7 @@ const Navbar = ({ isSignIn }: Props) => {
       </div>
 
       <div className="flex items-center">
-        <Button asChild variant="default" size="lg" className="hidden md:flex ">
+        <Button asChild variant="default" size="lg" className="hidden md:flex">
           <Link
             href={isSignIn ? "/dashboard" : "/sign-in"}
             className="mr-3 lg:mr-0"

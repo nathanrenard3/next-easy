@@ -5,10 +5,24 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { config } from "@/config";
 
 const QuestionsOne = () => {
-  const { title, description, list } = config.landing.questions;
+  const questions = [
+    {
+      question: "What is NextEasy?",
+      answer: "NextEasy is a boilerplate for Next.js.",
+    },
+    {
+      question: "What technologies are used in this boilerplate?",
+      answer:
+        "This boilerplate is built with Next.js, TailwindCSS, Shadcn / Magic UI, NextAuth, Prisma, Resend and Supabase.",
+    },
+    {
+      question: "Is this boilerplate open source?",
+      answer:
+        "Yes, this boilerplate is open source. You can find the source code on GitHub.",
+    },
+  ];
 
   return (
     <div className="container lg:pt-12 relative">
@@ -19,7 +33,7 @@ const QuestionsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={title}
+          text="FAQ"
         />
         <FadeText
           className="font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -27,12 +41,12 @@ const QuestionsOne = () => {
           framerProps={{
             show: { transition: { delay: 0.2 } },
           }}
-          text={description}
+          text="Frequently Asked Questions"
         />
       </div>
       <div className="mt-8">
         <Accordion type="single" collapsible className="w-full grid">
-          {list.map((q, i) => (
+          {questions.map((q, i) => (
             <AccordionItem key={i} className="my-4" value={String(i)}>
               <AccordionTrigger className="flex justify-between items-center py-4 px-6 bg-card rounded-lg shadow-sm cursor-pointer text-base lg:text-lg border border-input bg-white">
                 <span className="font-semibold">{q.question}</span>

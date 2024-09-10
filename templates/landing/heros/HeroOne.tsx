@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { motion, useInView } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
-import { config } from "@/config";
 import Link from "next/link";
 const HeroOne = () => {
   const fadeInRef = useRef(null);
@@ -34,7 +33,7 @@ const HeroOne = () => {
 
   return (
     <section id="hero">
-      <div className="relative h-full overflow-hidden pb-10 pt-5 lg:pt-16">
+      <div className="relative h-full overflow-hidden pb-16 pt-24 lg:pt-32">
         <div className="container z-10 flex flex-col items-center">
           <div className="mt-6 lg:mt-10 grid grid-cols-1">
             <div className="flex flex-col items-center gap-6 pb-8 text-center">
@@ -51,7 +50,7 @@ const HeroOne = () => {
                   type: "spring",
                 }}
               >
-                {config.landing.hero.title}
+                The best boilerplate to start your project easily and quickly
               </motion.h1>
 
               <motion.p
@@ -66,25 +65,9 @@ const HeroOne = () => {
                   type: "spring",
                 }}
               >
-                {config.landing.hero.description.highlight ? (
-                  <>
-                    {
-                      config.landing.hero.description.title.split(
-                        config.landing.hero.description.highlight
-                      )[0]
-                    }
-                    <span className="inline-block sm:inline bg-primary/25 px-2 py-1 rounded-md text-primary font-semibold mt-2 sm:mt-0">
-                      {config.landing.hero.description.highlight}
-                    </span>{" "}
-                    {
-                      config.landing.hero.description.title.split(
-                        config.landing.hero.description.highlight
-                      )[1]
-                    }
-                  </>
-                ) : (
-                  config.landing.hero.description.title
-                )}
+                Kickstart your project with our optimized Next.js boilerplate,
+                built to accelerate development and provide the tools you need
+                for scalable applications.
               </motion.p>
 
               <motion.div
@@ -100,7 +83,7 @@ const HeroOne = () => {
                 }}
               >
                 <Link
-                  href={config.landing.hero.callToAction.href}
+                  href={"#features"}
                   className={cn(
                     "bg-primary text-muted",
                     "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-6 py-5 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
@@ -108,7 +91,7 @@ const HeroOne = () => {
                     "text-sm lg:text-base"
                   )}
                 >
-                  {config.landing.hero.callToAction.label}
+                  Get started
                   <ChevronRight className="size-4 translate-x-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
                 </Link>
               </motion.div>
@@ -138,7 +121,7 @@ const HeroOne = () => {
             <Safari
               url={url}
               className="size-full"
-              src={config.landing.hero.image}
+              src="https://placehold.co/1920x1080?text=Hero+Image"
             />
 
             <BorderBeam

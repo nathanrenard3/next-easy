@@ -5,17 +5,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { SessionProviderWrapper } from "@/providers/session-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
+import { config } from "@/config";
 
 const inter = Inter({ subsets: ["latin"] });
+const name = config.name;
 
 export const metadata: Metadata = {
-  title: "NextEasy",
+  title: name,
   description: "The best next template to start your project",
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: process.env.URL_FRONT,
-    siteName: "NextEasy",
+    siteName: name,
   },
   icons: {
     icon: "/icon.ico",

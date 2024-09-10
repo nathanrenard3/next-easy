@@ -11,7 +11,6 @@ import * as Accordion from "@radix-ui/react-accordion";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { config } from "@/config";
 import { FadeText } from "@/components/magicui/fade-text";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -92,15 +91,40 @@ type CardDataProps = {
   } | null;
 };
 
-const cardData: CardDataProps[] = config.landing.features.list.map(
-  (feature, index) => ({
-    id: index + 1,
-    title: feature.title,
-    description: feature.description,
-    image: feature.image,
-    callToAction: feature.callToAction || null,
-  })
-);
+const features = [
+  {
+    title: "Optimized Architecture",
+    description:
+      "A carefully organized project structure for optimal scalability and maintainability, enabling rapid and efficient development.",
+    image: "https://placehold.co/1920x1080?text=Optimized+Architecture",
+    callToAction: null,
+  },
+  {
+    title: "Ready-to-Use Components",
+    description:
+      "A rich library of reusable and customizable components designed to speed up your user interface development.",
+    image: "https://placehold.co/1920x1080?text=Ready-to-Use+Components",
+    callToAction: {
+      label: "Get started",
+      href: "/dashboard",
+    },
+  },
+  {
+    title: "Easy Integration",
+    description:
+      "Pre-established configurations for authentication, state management, and APIs, allowing you to focus on your application's business logic.",
+    image: "https://placehold.co/1920x1080?text=Easy+Integration",
+    callToAction: null,
+  },
+];
+
+const cardData: CardDataProps[] = features.map((feature, index) => ({
+  id: index + 1,
+  title: feature.title,
+  description: feature.description,
+  image: feature.image,
+  callToAction: feature.callToAction || null,
+}));
 
 type FeatureProps = {
   collapseDelay?: number;
@@ -166,7 +190,7 @@ const Feature = ({
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={config.landing.features.title}
+            text="Features"
           />
           <FadeText
             className="scroll-m-96 font-extrabold tracking-tight text-2xl lg:text-5xl"
@@ -174,7 +198,7 @@ const Feature = ({
             framerProps={{
               show: { transition: { delay: 0.2 } },
             }}
-            text={config.landing.features.description}
+            text="Powerful tools to accelerate your development"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
