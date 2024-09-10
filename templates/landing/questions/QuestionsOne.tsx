@@ -47,8 +47,12 @@ const QuestionsOne = () => {
       <div className="mt-8">
         <Accordion type="single" collapsible className="w-full grid">
           {questions.map((q, i) => (
-            <AccordionItem key={i} className="my-4" value={String(i)}>
-              <AccordionTrigger className="flex justify-between items-center py-4 px-6 bg-card rounded-lg shadow-sm cursor-pointer text-base lg:text-lg border border-input bg-white">
+            <AccordionItem
+              key={i}
+              value={`question-${i}`}
+              className="my-4 rounded-xl border border-gray-200 shadow-sm transition-all hover:border-primary [&[data-state=open]]:border-primary"
+            >
+              <AccordionTrigger className="px-4 py-4 text-base sm:text-lg font-medium text-left">
                 <span className="font-semibold">{q.question}</span>
                 <span className="text-primary-foreground">
                   <svg
@@ -64,7 +68,7 @@ const QuestionsOne = () => {
                   </svg>
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="p-4 bg-card rounded-lg shadow-sm border border-input bg-white mt-1">
+              <AccordionContent className="px-4 pb-4 text-sm sm:text-base">
                 <p className="text-muted-foreground">{q.answer}</p>
               </AccordionContent>
             </AccordionItem>
