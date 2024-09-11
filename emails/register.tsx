@@ -28,7 +28,7 @@ export const Register = ({ name, url }: RegisterProps) => (
             <strong>{name}</strong>, your personal access has been created!
           </Text>
 
-          <Section className="p-6 border border-solid border-gray-300 rounded-lg text-center">
+          <Section className="p-6 border border-solid border-border rounded-lg text-center">
             <Text className="m-0 mb-4 text-left">
               Welcome <strong>{name}</strong>!
             </Text>

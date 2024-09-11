@@ -26,7 +26,7 @@ export default function PriceCard({ price, isPopular }: PriceCardProps) {
     <div
       className={cn(
         "relative flex w-full flex-col gap-4 overflow-hidden rounded-xl p-4 sm:p-6",
-        "border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800",
+        "border border-border bg-white dark:bg-background",
         "text-foreground shadow-sm hover:shadow-md transition-shadow duration-200",
         {
           "border-2 border-primary/75": isPopular,
@@ -45,7 +45,7 @@ export default function PriceCard({ price, isPopular }: PriceCardProps) {
       </div>
 
       {isPopular && (
-        <span className="absolute top-3 right-3 inline-block whitespace-nowrap rounded-full bg-primary px-2.5 py-1 text-[11px] font-semibold uppercase leading-5 tracking-wide text-primary-foreground">
+        <span className="absolute top-3 right-3 inline-block whitespace-nowrap rounded-full bg-background px-2.5 py-1 text-[11px] font-semibold uppercase leading-5 tracking-wide text-primary-foreground">
           Most popular
         </span>
       )}
@@ -73,7 +73,7 @@ export default function PriceCard({ price, isPopular }: PriceCardProps) {
       <Button
         className={cn(
           "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-          "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
+          "transform-gpu bg-primary hover:bg-primary ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
           !isPopular &&
             "bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
         )}

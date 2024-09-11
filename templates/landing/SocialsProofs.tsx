@@ -1,7 +1,7 @@
 import { FadeText } from "@/components/magicui/fade-text";
 import Image from "next/image";
 
-const SocialsProofsOne = () => {
+const SocialsProofs = () => {
   const partners = [
     {
       name: "Example Tech 1",
@@ -26,7 +26,7 @@ const SocialsProofsOne = () => {
   ];
 
   return (
-    <div className="container lg:pt-24 lg:pb-12 pt-12">
+    <div className="container py-10 lg:py-20">
       <div className="flex flex-col items-center gap-y-2 justify-center mb-3 lg:mb-5 text-center">
         <FadeText
           className="font-bold text-primary uppercase text-base lg:text-lg"
@@ -69,4 +69,4 @@ const SocialsProofsOne = () => {
   );
 };
 
-export default SocialsProofsOne;
+export default SocialsProofs;

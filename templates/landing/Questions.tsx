@@ -6,7 +6,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-const QuestionsOne = () => {
+const Questions = () => {
   const questions = [
     {
       question: "What is NextEasy?",
@@ -25,7 +25,7 @@ const QuestionsOne = () => {
   ];
 
   return (
-    <div className="container lg:pt-12 relative">
+    <div className="relative container my-10 lg:my-20">
       <div className="flex flex-col items-center gap-y-2 justify-center text-center">
         <FadeText
           className="font-bold text-primary uppercase text-base lg:text-lg"
@@ -50,7 +50,7 @@ const QuestionsOne = () => {
             <AccordionItem
               key={i}
               value={`question-${i}`}
-              className="my-4 rounded-xl border border-gray-200 shadow-sm transition-all hover:border-primary [&[data-state=open]]:border-primary"
+              className="my-4 rounded-xl border border-border shadow-sm transition-all hover:border-primary [&[data-state=open]]:border-primary"
             >
               <AccordionTrigger className="px-4 py-4 text-base sm:text-lg font-medium text-left">
                 <span className="font-semibold">{q.question}</span>
@@ -79,4 +79,4 @@ const QuestionsOne = () => {
   );
 };
 
-export default QuestionsOne;
+export default Questions;

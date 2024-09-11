@@ -181,7 +181,7 @@ const Feature = ({
   }, [currentIndex, collapseDelay]);
 
   return (
-    <section ref={ref} id="features" className="py-20">
+    <section ref={ref} id="features" className="container my-10 lg:my-20">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-4xl text-center mb-16">
           <FadeText
@@ -244,7 +244,7 @@ const Feature = ({
                       <Link
                         href={item.callToAction.href}
                         className={cn(
-                          "bg-primary text-muted my-3",
+                          "bg-background text-muted my-3",
                           "group relative inline-flex h-9 w-full items-center justify-center gap-2 overflow-hidden whitespace-pre rounded-md px-6 py-5 text-base font-semibold tracking-tighter focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 md:flex",
                           "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
                           "text-base lg:text-lg"
@@ -288,8 +288,8 @@ const Feature = ({
   );
 };
 
-export function FeaturesTwo() {
+export function Features() {
   return <Feature collapseDelay={5000} linePosition="left" />;
 }
 
-export default FeaturesTwo;
+export default Features;

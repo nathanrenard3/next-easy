@@ -28,7 +28,7 @@ export const ResetPassword = ({ name, url }: ResetPasswordProps) => (
             <strong>{name}</strong>, you have requested to reset your password
           </Text>
 
-          <Section className="p-6 border border-solid border-gray-300 rounded-lg text-center">
+          <Section className="p-6 border border-solid border-border rounded-lg text-center">
             <Text className="m-0 mb-4 text-left">
               Hello <strong>{name}</strong>,
             </Text>

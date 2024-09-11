@@ -1,23 +1,23 @@
-import HeroOne from "@/templates/landing/heros/HeroOne";
-import SocialsProofsOne from "@/templates/landing/socials-proofs/SocialsProofsOne";
-import { PricingsOne } from "@/templates/landing/pricings/PricingsOne";
-import StatisticsOne from "@/templates/landing/statistics/StatisticsOne";
-import { TestimonialsOne } from "@/templates/landing/testimonials/TestimonialsOne";
-import QuestionsOne from "@/templates/landing/questions/QuestionsOne";
-import FeaturesTwo from "@/templates/landing/features/FeaturesTwo";
-import { CallToActionTwo } from "@/templates/landing/calls-to-action/CallToActionTwo";
+import { CallToAction } from "@/templates/landing/CallToAction";
+import Features from "@/templates/landing/Features";
+import Hero from "@/templates/landing/Hero";
+import { Pricings } from "@/templates/landing/Pricings";
+import Questions from "@/templates/landing/Questions";
+import SocialsProofs from "@/templates/landing/SocialsProofs";
+import Statistics from "@/templates/landing/Statistics";
+import { Testimonials } from "@/templates/landing/Testimonials";
 
 async function Page() {
   return (
     <div className="-my-24">
-      <HeroOne />
-      <FeaturesTwo />
-      <StatisticsOne />
-      <TestimonialsOne />
-      <PricingsOne />
-      <QuestionsOne />
-      <SocialsProofsOne />
-      <CallToActionTwo />
+      <Hero />
+      <Features />
+      <Statistics />
+      <Testimonials />
+      <Pricings />
+      <Questions />
+      <SocialsProofs />
+      <CallToAction />
     </div>
   );
 }

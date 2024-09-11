@@ -47,7 +47,7 @@ export default async function DocPage({
         const isInline = !className;
         return isInline ? (
           <code
-            className="px-1 py-0.5 bg-gray-100 rounded text-sm"
+            className="px-1 py-0.5 bg-gray-200 dark:bg-gray-800 text-primary rounded text-sm"
             {...props}
           />
         ) : (

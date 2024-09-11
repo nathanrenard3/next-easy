@@ -10,7 +10,7 @@ import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
-const HeroOne = () => {
+const Hero = () => {
   const fadeInRef = useRef(null);
   const fadeInInView = useInView(fadeInRef, {
     once: true,
@@ -47,7 +47,7 @@ const HeroOne = () => {
 
   return (
     <section id="hero">
-      <div className="relative h-full overflow-hidden pb-16 pt-24 lg:pt-32">
+      <div className="relative h-full overflow-hidden py-24 lg:py-32">
         <div className="container z-10 flex flex-col items-center">
           <div className="mt-6 lg:mt-10 grid grid-cols-1">
             <div className="flex flex-col items-center gap-6 pb-8 text-center">
@@ -155,8 +155,8 @@ const HeroOne = () => {
         {currentTheme && (
           <Particles
             className="absolute inset-0 -z-10 opacity-50 lg:opacity-100"
-            quantity={150}
-            ease={80}
+            quantity={120}
+            ease={250}
             size={0.7}
             color={getParticleColor()}
             refresh={currentTheme === "dark"}
@@ -167,4 +167,4 @@ const HeroOne = () => {
   );
 };
 
-export default HeroOne;
+export default Hero;

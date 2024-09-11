@@ -13,7 +13,7 @@ export const Highlight = ({
   return (
     <span
       className={cn(
-        "bg-primary/20 p-1 py-0.5 font-bold text-primary",
+        "bg-background/20 p-1 py-0.5 font-bold text-primary",
         className
       )}
     >
@@ -42,7 +42,7 @@ export const TestimonialCard = ({
   <div
     className={cn(
       "mb-4 flex w-full cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-xl p-4",
-      "border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800",
+      "border border-border bg-white dark:bg-background",
       className
     )}
     {...props}
@@ -83,7 +83,7 @@ export const TestimonialCard = ({
   </div>
 );
 
-export function TestimonialsOne() {
+export function Testimonials() {
   const testimonials = [
     {
       name: "Example 1",
@@ -151,7 +151,7 @@ export function TestimonialsOne() {
   ];
 
   return (
-    <section id="testimonials" className="container">
+    <section id="testimonials" className="container my-10 lg:my-20">
       <div className="pt-16 lg:pt-24">
         <div className="flex flex-col items-center gap-y-2 justify-center mb-3 lg:mb-5 text-center">
           <FadeText

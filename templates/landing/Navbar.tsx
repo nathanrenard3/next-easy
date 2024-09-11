@@ -18,6 +18,7 @@ import {
 import { config } from "@/config";
 import ToogleTheme from "@/components/ui/toogle-theme";
 import Logo from "@/templates/landing/Logo";
+import { cn } from "@/lib/utils";
 
 let menuItems = [
   {
@@ -49,11 +50,13 @@ const DesktopNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
     <NavigationMenuList className="flex flex-row items-start">
       {menuItems.map((menuItem, index) => (
         <NavigationMenuItem key={index}>
-          <Link href={menuItem.href} legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            className={cn(navigationMenuTriggerStyle(), "bg-transparent")}
+          >
+            <Link href={menuItem.href} legacyBehavior passHref>
               {menuItem.title}
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       ))}
     </NavigationMenuList>
@@ -90,50 +93,43 @@ type Props = {
 
 const Navbar = ({ isSignIn }: Props) => {
   return (
-    <header className="absolute top-0 left-0 right-0 w-full z-50 container flex items-center justify-between py-4">
-      <div className="flex items-center">
-        <Link href="/">
-          <Logo />
-        </Link>
-        <div className="hidden md:block ml-5 p-3">
-          <DesktopNavigationMenu isSignIn={isSignIn} />
+    <header className="absolute top-0 left-0 right-0 w-full z-50 md:container flex items-center justify-between py-4">
+      <div className="container flex items-center justify-between py-4">
+        <div className="flex items-center">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <Logo />
+          </Link>
+          <div className="hidden md:flex">
+            <DesktopNavigationMenu isSignIn={isSignIn} />
+          </div>
         </div>
-      </div>
 
-      <div className="flex items-center">
-        <div className="grid grid-cols-2 gap-2">
+        <div className="flex items-center space-x-4">
           <Button
             asChild
-            variant="default"
+            variant="ghost"
             size="lg"
-            className="hidden md:flex"
+            className="hidden sm:flex px-3"
           >
-            <Link
-              href={isSignIn ? "/dashboard" : "/sign-in"}
-              className="mr-3 lg:mr-0"
-            >
+            <Link href={isSignIn ? "/dashboard" : "/sign-in"}>
               {isSignIn ? "Dashboard" : "Sign in"}
             </Link>
           </Button>
           <ToogleTheme />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button size="icon" variant="ghost" className="md:hidden">
+                <HamburgerMenuIcon className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <div className="flex flex-col space-y-4 mt-4">
+                <MobileNavigationMenu isSignIn={isSignIn} />
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
-
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant="outline"
-              className="md:hidden bg-white/50"
-            >
-              <HamburgerMenuIcon />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right">
-            <div className="p-4">
-              <MobileNavigationMenu isSignIn={isSignIn} />
-            </div>
-          </SheetContent>
-        </Sheet>
       </div>
     </header>
   );

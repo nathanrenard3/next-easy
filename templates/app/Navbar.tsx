@@ -83,7 +83,7 @@ const Navbar = ({ firstName, lastName, elements }: Props) => {
                   href={element.href}
                   className={`flex items-center gap-2 rounded-lg p-2 text-sm text-muted-foreground hover:text-accent-foreground ${
                     isActiveLink(element.href)
-                      ? "bg-primary/25 text-accent-foreground"
+                      ? "bg-background/25 text-accent-foreground"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -112,7 +112,7 @@ const Navbar = ({ firstName, lastName, elements }: Props) => {
           <DropdownMenuTrigger asChild>
             <div className="flex items-center cursor-pointer">
               <Avatar>
-                <AvatarFallback className="bg-primary text-muted">
+                <AvatarFallback className="bg-background text-muted">
                   {firstName.charAt(0)}
                   {lastName.charAt(0)}
                 </AvatarFallback>

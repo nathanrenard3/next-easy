@@ -53,7 +53,7 @@ export const CodeBlock = ({ children, className }: any) => {
       </SyntaxHighlighter>
       <button
         onClick={copyToClipboard}
-        className="absolute top-2 right-2 p-2 rounded bg-gray-700 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute top-2 right-2 p-2 rounded bg-background text-primary opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Copy code"
       >
         {copied ? <Check size={16} /> : <Copy size={16} />}

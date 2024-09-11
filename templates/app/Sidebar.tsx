@@ -67,7 +67,7 @@ const Sidebar = ({ elements }: SidebarProps) => {
           <div className="flex w-full justify-end mb-4">
             <button
               onClick={toggleSidebar}
-              className="flex h-12 w-12 items-center justify-center rounded-lg transition-colors hover:bg-primary/25"
+              className="flex h-12 w-12 items-center justify-center rounded-lg transition-colors hover:bg-background/25"
             >
               <ChevronLeft />
             </button>
@@ -75,7 +75,7 @@ const Sidebar = ({ elements }: SidebarProps) => {
         ) : (
           <button
             onClick={toggleSidebar}
-            className="flex h-12 w-12 items-center justify-center rounded-lg transition-colors hover:bg-primary/25 mb-4"
+            className="flex h-12 w-12 items-center justify-center rounded-lg transition-colors hover:bg-background/25 mb-4"
           >
             <ChevronRight />
           </button>
@@ -86,7 +86,7 @@ const Sidebar = ({ elements }: SidebarProps) => {
             href={element.href}
             className={`flex h-12 w-full items-center justify-start rounded-lg transition-colors hover:text-foreground px-3 ${
               isActiveLink(element.href)
-                ? "bg-primary/25 text-accent-foreground"
+                ? "bg-background/25 text-accent-foreground"
                 : "text-muted-foreground"
             }`}
           >

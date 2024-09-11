@@ -5,7 +5,7 @@ import NumberTicker from "@/components/magicui/number-ticker";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export const StatisticsOne = () => {
+export const Statistics = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
@@ -36,7 +36,7 @@ export const StatisticsOne = () => {
   ];
 
   return (
-    <section id="statistics" className="container py-24">
+    <section id="statistics" className="container my-10 lg:my-20">
       <div className="flex flex-col items-center gap-y-2 justify-center text-center mb-12">
         <FadeText
           className="font-bold text-primary uppercase text-base lg:text-lg"
@@ -85,4 +85,4 @@ export const StatisticsOne = () => {
   );
 };
 
-export default StatisticsOne;
+export default Statistics;

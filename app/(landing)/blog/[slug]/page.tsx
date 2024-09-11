@@ -68,7 +68,7 @@ export default async function BlogPost({
             {post.category}
           </span>
         </div>
-        <hr className="border-t border-gray-300 mb-8" />
+        <hr className="border-t border-border mb-8" />
         <div className="prose prose-sm sm:prose md:prose-lg lg:prose-xl max-w-none">
           <MDXRemote source={post.content} components={components} />
         </div>
