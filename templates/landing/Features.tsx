@@ -106,7 +106,7 @@ const features = [
     image: "https://placehold.co/1920x1080?text=Ready-to-Use+Components",
     callToAction: {
       label: "Get started",
-      href: "/dashboard",
+      href: "/register",
     },
   },
   {

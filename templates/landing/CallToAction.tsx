@@ -29,7 +29,7 @@ export function CallToAction() {
               size="lg"
               asChild
             >
-              <Link href="/register" target="_blank" rel="noopener noreferrer">
+              <Link href="/register">
                 <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96 dark:bg-primary" />
                 <p>Get started</p>
                 <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />

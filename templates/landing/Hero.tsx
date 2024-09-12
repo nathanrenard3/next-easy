@@ -46,8 +46,8 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero">
-      <div className="relative h-full overflow-hidden py-24 lg:py-32">
+    <section id="hero" className="mt-44 lg:mt-52 mb-20 lg:mb-32">
+      <div className="relative h-full overflow-hidden">
         <div className="container z-10 flex flex-col items-center">
           <div className="mt-6 lg:mt-10 grid grid-cols-1">
             <div className="flex flex-col items-center gap-6 pb-8 text-center">

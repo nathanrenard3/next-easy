@@ -79,7 +79,7 @@ export default function PriceCard({ price, isPopular }: PriceCardProps) {
         )}
         asChild
       >
-        <Link href={`/api/stripe/checkouts?priceId=${price.priceId}`}>
+        <Link href={`#${price.priceId}`}>
           <span className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 transform-gpu bg-foreground opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-96" />
           <p>Start fast</p>
         </Link>
