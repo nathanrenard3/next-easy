@@ -71,7 +71,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
       {paginatedPosts.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-primary/50">
             {searchTerm || selectedCategory !== "all"
               ? "No articles match your search criteria."
               : "There are no articles yet, but they're coming soon!"}
@@ -92,7 +92,7 @@ export default function BlogList({ posts }: BlogListProps) {
             >
               Previous
             </Button>
-            <span className="mx-4 text-sm text-gray-500">
+            <span className="mx-4 text-sm text-primary/50">
               {currentPage} / {totalPages}
             </span>
             <Button

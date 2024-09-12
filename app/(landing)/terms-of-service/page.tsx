@@ -174,14 +174,16 @@ const renderSection = ({ title, content }: Section) => (
 
 const TermsOfService = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto my-32 lg:my-44">
       <h1 className="text-3xl font-bold mb-6">
         Terms of Service of {config.name}
       </h1>
 
       {sections.map(renderSection)}
 
-      <p className="mt-8 text-sm text-gray-600">Last updated: {LAST_UPDATED}</p>
+      <p className="mt-8 text-sm text-primary/50">
+        Last updated: {LAST_UPDATED}
+      </p>
     </div>
   );
 };

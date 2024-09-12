@@ -1,7 +1,7 @@
 export const config: Config = {
   // App configuration
   name: "NextEasy",
-  defaultTheme: "light",
+  defaultTheme: "dark",
   logo: {
     light: "/logo-light.svg", // Logo for light theme
     dark: "/logo-dark.svg", // Logo for dark theme
@@ -29,7 +29,7 @@ export const config: Config = {
   // Documentation configuration
   documentation: {
     display: true,
-    baseUrl: "/docs/introduction", // The base url is where the button to access the documentation redirect
+    baseUrl: "/docs/getting-started/introduction", // The base url is where the button to access the documentation redirect
   },
   // Stripe configuration
   stripe: {

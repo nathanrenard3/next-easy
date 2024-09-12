@@ -144,14 +144,16 @@ const renderSection = ({ title, content }: Section) => (
 
 const PrivacyPolicy = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto my-32 lg:my-44">
       <h1 className="text-3xl font-bold mb-6">
         Privacy Policy of {config.name}
       </h1>
 
       {sections.map(renderSection)}
 
-      <p className="text-sm text-gray-600 mt-8">Last updated: {LAST_UPDATED}</p>
+      <p className="text-sm text-primary/50 mt-8">
+        Last updated: {LAST_UPDATED}
+      </p>
     </div>
   );
 };

@@ -62,7 +62,7 @@ export default async function BlogPost({
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-primary">
           {post.title}
         </h1>
-        <div className="flex flex-wrap items-center text-gray-600 mb-6">
+        <div className="flex flex-wrap items-center text-primary/50 mb-6">
           <span className="mr-4 text-sm sm:text-base">{formattedDate}</span>
           <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs sm:text-sm">
             {post.category}

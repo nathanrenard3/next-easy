@@ -7,22 +7,20 @@ import { useEffect, useState } from "react";
 
 const Logo = () => {
   const { resolvedTheme } = useTheme();
-  const [currentLogo, setCurrentLogo] = useState(
-    config.defaultTheme === "dark" ? config.logo.dark : config.logo.light
-  );
+  const [currentLogo, setCurrentLogo] = useState(config.logo.dark);
 
   useEffect(() => {
     setCurrentLogo(
-      resolvedTheme === "dark" ? config.logo.dark : config.logo.light
+      resolvedTheme === "light" ? config.logo.light : config.logo.dark
     );
   }, [resolvedTheme]);
 
   return (
     <Image
-      className="z-50 w-[120px] md:w-[140px]"
+      className="z-50 w-[90px] md:w-[110px]"
       src={currentLogo}
       alt={config.name}
-      width={120}
+      width={110}
       height={20}
       priority
     />

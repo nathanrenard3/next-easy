@@ -45,17 +45,24 @@ if (config.documentation.display) {
   });
 }
 
-const DesktopNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
+const DesktopNavigationMenu = () => (
   <NavigationMenu>
     <NavigationMenuList className="flex flex-row items-start">
       {menuItems.map((menuItem, index) => (
         <NavigationMenuItem key={index}>
           <NavigationMenuLink
-            className={cn(navigationMenuTriggerStyle(), "bg-transparent")}
+            className={cn(
+              navigationMenuTriggerStyle(),
+              "bg-transparent hover:cursor-pointer"
+            )}
           >
-            <Link href={menuItem.href} legacyBehavior passHref>
-              {menuItem.title}
-            </Link>
+            {menuItem.href ? (
+              <Link href={menuItem.href} legacyBehavior passHref>
+                <span>{menuItem.title}</span>
+              </Link>
+            ) : (
+              <span>{menuItem.title}</span>
+            )}
           </NavigationMenuLink>
         </NavigationMenuItem>
       ))}
@@ -63,7 +70,7 @@ const DesktopNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
   </NavigationMenu>
 );
 
-const MobileNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
+const MobileNavigationMenu = () => (
   <>
     {menuItems.map((menuItem, index) => (
       <SheetClose asChild key={index}>
@@ -78,10 +85,10 @@ const MobileNavigationMenu = ({ isSignIn }: { isSignIn: boolean }) => (
     ))}
     <SheetClose asChild>
       <Link
-        href={isSignIn ? "/dashboard" : "/sign-in"}
+        href="/sign-in"
         className="block py-2 text-lg font-medium hover:text-primary"
       >
-        {isSignIn ? "Tableau de bord" : "Connexion"}
+        Sign in
       </Link>
     </SheetClose>
   </>
@@ -93,18 +100,18 @@ type Props = {
 
 const Navbar = ({ isSignIn }: Props) => {
   return (
-    <header className="absolute top-0 left-0 right-0 w-full z-50 md:container flex items-center justify-between py-4">
+    <header className="fixed top-0 left-0 right-0 w-full z-50 bg-background backdrop-blur-md flex items-center justify-between">
       <div className="container flex items-center justify-between py-4">
         <div className="flex items-center">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
+          <Link href="/" className="mr-6 flex items-center">
             <Logo />
           </Link>
           <div className="hidden md:flex">
-            <DesktopNavigationMenu isSignIn={isSignIn} />
+            <DesktopNavigationMenu />
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <Button
             asChild
             variant="ghost"
@@ -125,7 +132,7 @@ const Navbar = ({ isSignIn }: Props) => {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col space-y-4 mt-4">
-                <MobileNavigationMenu isSignIn={isSignIn} />
+                <MobileNavigationMenu />
               </div>
             </SheetContent>
           </Sheet>
