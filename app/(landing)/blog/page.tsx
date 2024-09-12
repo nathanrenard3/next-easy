@@ -16,7 +16,7 @@ export default async function BlogPage() {
   const posts = await getAllPosts();
 
   return (
-    <div className="container mx-auto px-4 my-32 lg:my-44">
+    <div className="container mx-auto px-4 md:my-32">
       <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
         <FadeText
           className="font-bold text-primary uppercase text-base lg:text-lg mb-3"

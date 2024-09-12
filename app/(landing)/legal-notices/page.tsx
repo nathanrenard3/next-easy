@@ -31,7 +31,7 @@ const LegalNotices = () => {
   ];
 
   return (
-    <div className="container mx-auto my-32 lg:my-44">
+    <div className="container mx-auto md:my-28">
       <h1 className="text-3xl font-bold mb-6">Legal Notices</h1>
       {sections.map((section, index) => (
         <section key={index} className="mb-8">

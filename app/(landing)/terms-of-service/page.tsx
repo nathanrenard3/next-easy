@@ -174,7 +174,7 @@ const renderSection = ({ title, content }: Section) => (
 
 const TermsOfService = () => {
   return (
-    <div className="container mx-auto my-32 lg:my-44">
+    <div className="container mx-auto md:my-28">
       <h1 className="text-3xl font-bold mb-6">
         Terms of Service of {config.name}
       </h1>
