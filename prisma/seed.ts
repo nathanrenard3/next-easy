@@ -3,7 +3,7 @@ import { config } from "../config";
 import { hash } from "bcrypt";
 
 async function main() {
-  const user = await prisma.user.create({
+  await prisma.user.create({
     data: {
       firstName: config.user.firstName,
       lastName: config.user.lastName,

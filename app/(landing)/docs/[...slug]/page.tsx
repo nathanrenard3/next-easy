@@ -1,4 +1,8 @@
-import { getDocumentationContent, getPreviousAndNextPages } from "@/lib/docs";
+import {
+  getDocumentationContent,
+  getPreviousAndNextPages,
+  getFirstPageInCategory,
+} from "@/lib/docs";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -37,8 +41,13 @@ export default async function DocPage({
       },
     };
 
+    const getLinkHref = async (item: { slug: string; title: string }) => {
+      const firstPage = await getFirstPageInCategory(item.slug);
+      return `/docs/${firstPage || item.slug}`;
+    };
+
     return (
-      <div className="flex justify-center max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="flex justify-center max-w-7xl mx-auto px-4 lg:px-8 mb-16">
         <main className="w-full max-w-3xl">
           <article>
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-primary">
@@ -50,10 +59,7 @@ export default async function DocPage({
             <div className="mt-12 flex justify-between items-center">
               {previous && (
                 <Link
-                  href={`/docs/${previous.slug
-                    .split("/")
-                    .filter(Boolean)
-                    .join("/")}`}
+                  href={await getLinkHref(previous)}
                   className="flex items-center text-primary hover:underline"
                 >
                   <ChevronLeft className="mr-2" />
@@ -62,10 +68,7 @@ export default async function DocPage({
               )}
               {next && (
                 <Link
-                  href={`/docs/${next.slug
-                    .split("/")
-                    .filter(Boolean)
-                    .join("/")}`}
+                  href={await getLinkHref(next)}
                   className="flex items-center text-primary hover:underline ml-auto"
                 >
                   <span>Next: {next.title}</span>

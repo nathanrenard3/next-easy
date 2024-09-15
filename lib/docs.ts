@@ -38,10 +38,19 @@ function getCategoryInfo(categoryPath: string): CategoryInfo | null {
 
 function getFileData(filePath: string, parentPath: string[]): DocFile {
   const fileContent = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(fileContent);
+  const { data, content } = matter(fileContent);
+  let title = data.title;
+
+  if (!title) {
+    const headingMatch = content.match(/^#\s+(.*$)|\n##\s+(.*$)/m);
+    title = headingMatch
+      ? (headingMatch[1] || headingMatch[2]).trim()
+      : "Untitled";
+  }
+
   return {
     slug: path.basename(filePath, ".mdx"),
-    title: data.title || "Untitled",
+    title: title,
     position: data.position || 0,
     path: parentPath.join("/"),
   };
@@ -198,6 +207,30 @@ function flattenStructure(structure: Category[]): PageInfo[] {
 
   structure.forEach((category) => traverse(category));
   return flattened;
+}
+
+export async function getFirstPageInCategory(slug: string): Promise<string> {
+  const structure = getDocumentationStructure();
+  const findFirstPage = (categories: Category[]): string | null => {
+    for (const category of categories) {
+      if (category.path === slug) {
+        if (category.files.length > 0) {
+          return category.files[0].slug;
+        }
+        if (category.categories && category.categories.length > 0) {
+          return findFirstPage(category.categories);
+        }
+      }
+      if (category.categories && category.categories.length > 0) {
+        const result = findFirstPage(category.categories);
+        if (result) return result;
+      }
+    }
+    return null;
+  };
+
+  const firstPage = findFirstPage(structure);
+  return firstPage || slug;
 }
 
 interface PageInfo {

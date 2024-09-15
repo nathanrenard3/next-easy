@@ -24,7 +24,7 @@ export default async function Layout({
   return (
     <div className={cn("overflow-x-hidden", poppins.className)}>
       <Navbar isSignIn={isSignedIn} />
-      <div className="my-24">{children}</div>
+      <div className="my-24 min-h-screen">{children}</div>
       <Footer />
     </div>
   );

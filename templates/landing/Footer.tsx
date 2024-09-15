@@ -21,8 +21,8 @@ const Footer = () => {
   ].filter((social) => social.url !== null);
 
   return (
-    <footer className="container bg-transparent text-card-foreground rounded-lg w-full max-w-screen-2xl mx-auto px-6 md:px-8 py-8 md:py-12 mt-32 lg:mt-40">
-      <div className="flex flex-col space-y-8">
+    <footer className="bg-background text-card-foreground rounded-lg w-full mx-auto px-6 md:px-8 py-8 md:py-12 mt-32 lg:mt-40">
+      <div className="container flex flex-col space-y-8">
         <hr className="border-border" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <Link

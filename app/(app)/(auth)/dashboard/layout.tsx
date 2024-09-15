@@ -1,4 +1,3 @@
-import DynamicBreadcrumbs from "@/templates/app/DynamicBreadcrumbs";
 import Sidebar from "@/templates/app/Sidebar";
 import { NavigationElement } from "@/types/navigation-element";
 import { Home, Info } from "lucide-react";
@@ -31,7 +30,6 @@ export default async function Layout({
     <div className="flex items-center">
       <Sidebar elements={sidebarElements} />
       <section className="mx-5 my-7 w-full">
-        <DynamicBreadcrumbs origin="Dashboard" originPathname="dashboard" />
         <div className="my-5">{children}</div>
       </section>
     </div>
