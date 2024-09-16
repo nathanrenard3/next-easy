@@ -8,10 +8,10 @@ export const config: Config = {
   },
   // Socials configuration (for footer of landing page)
   socials: {
-    twitter: "https://twitter.com/nexteasy", // null to hide
-    instagram: "https://www.instagram.com/nexteasy",
-    linkedin: "https://www.linkedin.com/nexteasy",
-    github: "https://www.github.com/nexteasy",
+    twitter: null, // null to hide
+    instagram: null,
+    linkedin: null,
+    github: "https://github.com/nathanrenard3/next-easy",
   },
   // Blog configuration
   blog: {
