@@ -26,7 +26,7 @@ Create a `.env` file in the root of the project and add the following environmen
 ```bash
 # Database config
 DATABASE_URL="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks-pooler.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
-DATABASE_URL_UNPOOLED="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
+DIRECT_URL="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
 
 # Stripe config
 STRIPE_SECRET_KEY="replate-it-test-secret-key"
@@ -37,10 +37,6 @@ RESEND_API_KEY="replate-it-test-api-key"
 
 # The url for the front (used by stripe webhook and email links)
 URL_FRONT="http://localhost:3000" # Change it in prod
-
-# Supabase config
-SUPABASE_URL="https://replate-it-test-url.supabase.co"
-SUPABASE_ANON_KEY="replate-it-test-anon-key"
 
 # The url for the nextauth (login, logout, etc.) in dev
 NEXTAUTH_URL="http://localhost:3000" # Automatically set in prod

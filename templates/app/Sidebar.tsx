@@ -86,7 +86,7 @@ const Sidebar = ({ elements }: SidebarProps) => {
             href={element.href}
             className={`flex h-12 w-full items-center justify-start rounded-lg transition-colors hover:text-foreground px-3 ${
               isActiveLink(element.href)
-                ? "bg-background/25 text-accent-foreground"
+                ? "bg-primary/25 text-accent-foreground"
                 : "text-muted-foreground"
             }`}
           >

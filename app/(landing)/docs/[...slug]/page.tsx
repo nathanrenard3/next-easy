@@ -32,7 +32,7 @@ export default async function DocPage({
         const isInline = !className;
         return isInline ? (
           <code
-            className="px-1 py-0.5 dark:bg-background text-primary rounded text-sm"
+            className="px-1 py-0.5 bg-primary/10 text-primary rounded text-sm"
             {...props}
           />
         ) : (
@@ -50,9 +50,16 @@ export default async function DocPage({
       <div className="flex justify-center max-w-7xl mx-auto px-4 xl:px-8 mb-16">
         <main className="w-full max-w-3xl">
           <article>
-            <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold mb-6 text-primary">
+            <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold mb-2 text-primary">
               {data.title}
             </h1>
+            {data.description && (
+              <blockquote className="border-l-2 border-primary pl-3 py-1 mb-6">
+                <p className="text-xs sm:text-sm md:text-base text-muted-foreground italic">
+                  {data.description}
+                </p>
+              </blockquote>
+            )}
             <div className="prose prose-sm sm:prose md:prose-lg xl:prose-xl max-w-none">
               <MDXRemote source={content} components={components} />
             </div>

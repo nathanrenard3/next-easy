@@ -24,6 +24,11 @@ export interface Category {
   path: string;
 }
 
+/**
+ * Retrieves category information from a JSON file.
+ * @param categoryPath - Path to the category folder
+ * @returns Category information or null if not found
+ */
 function getCategoryInfo(categoryPath: string): CategoryInfo | null {
   const categoryJsonPath = path.join(categoryPath, "category.json");
   if (fs.existsSync(categoryJsonPath)) {
@@ -36,6 +41,12 @@ function getCategoryInfo(categoryPath: string): CategoryInfo | null {
   return null;
 }
 
+/**
+ * Extracts data from an MDX file.
+ * @param filePath - Path to the MDX file
+ * @param parentPath - Parent path to construct the full path
+ * @returns DocFile object containing file information
+ */
 function getFileData(filePath: string, parentPath: string[]): DocFile {
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data, content } = matter(fileContent);
@@ -56,6 +67,12 @@ function getFileData(filePath: string, parentPath: string[]): DocFile {
   };
 }
 
+/**
+ * Recursively builds a category structure from a given path.
+ * @param categoryPath - Path to the category folder
+ * @param parentPath - Parent path array for nested categories
+ * @returns Category object with nested files and subcategories
+ */
 function getCategory(
   categoryPath: string,
   parentPath: string[] = []
@@ -90,6 +107,10 @@ function getCategory(
   };
 }
 
+/**
+ * Generates the entire documentation structure.
+ * @returns Array of root categories, including files and nested categories
+ */
 export function getDocumentationStructure(): Category[] {
   const rootCategories = fs
     .readdirSync(docsDirectory)
@@ -114,6 +135,12 @@ export function getDocumentationStructure(): Category[] {
   ];
 }
 
+/**
+ * Retrieves the content of a specific documentation file.
+ * @param fullPath - Full path or slug of the documentation file
+ * @returns Object containing the file's frontmatter data and content
+ * @throws Error if the file is not found
+ */
 export function getDocumentationContent(fullPath: string) {
   const parts = fullPath.split("/");
   const slug = parts.pop();
@@ -142,6 +169,10 @@ export function getDocumentationContent(fullPath: string) {
   return { data, content };
 }
 
+/**
+ * Retrieves all documentation slugs.
+ * @returns Array of objects containing category and slug for each document
+ */
 export function getAllDocumentationSlugs() {
   const structure = getDocumentationStructure();
   return structure.flatMap((category) =>
@@ -152,6 +183,11 @@ export function getAllDocumentationSlugs() {
   );
 }
 
+/**
+ * Finds the previous and next pages for a given slug.
+ * @param currentSlug - Slug of the current page
+ * @returns Object containing previous and next page information
+ */
 export function getPreviousAndNextPages(currentSlug: string): {
   previous: PageInfo | null;
   next: PageInfo | null;
@@ -171,6 +207,11 @@ export function getPreviousAndNextPages(currentSlug: string): {
   };
 }
 
+/**
+ * Flattens the nested category structure into a linear array of pages.
+ * @param structure - Array of root categories
+ * @returns Flattened array of page information
+ */
 function flattenStructure(structure: Category[]): PageInfo[] {
   const flattened: PageInfo[] = [];
 
@@ -209,6 +250,11 @@ function flattenStructure(structure: Category[]): PageInfo[] {
   return flattened;
 }
 
+/**
+ * Finds the first page in a given category.
+ * @param slug - Slug of the category
+ * @returns Promise resolving to the slug of the first page or the input slug if not found
+ */
 export async function getFirstPageInCategory(slug: string): Promise<string> {
   const structure = getDocumentationStructure();
   const findFirstPage = (categories: Category[]): string | null => {
