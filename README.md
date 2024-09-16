@@ -2,6 +2,8 @@
 
 <a id="readme-top"></a>
 
+> **Note:** This boilerplate is currently under development. Some features may contain bugs or be incomplete.
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
