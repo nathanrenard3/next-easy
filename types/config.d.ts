@@ -52,9 +52,5 @@ type Config = {
   };
   email: {
     from: string;
-    templates: {
-      welcome: EmailTemplate;
-      resetPassword: EmailTemplate;
-    };
   };
 };

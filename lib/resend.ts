@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 import { config } from "@/config";
+import ResetPassword from "@/emails/reset-password";
+import Register from "@/emails/register";
 
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -52,11 +54,10 @@ export async function sendRegisterEmail(
   verificationToken: string
 ) {
   const verificationUrl = `${process.env.URL_FRONT}/verify-email?token=${verificationToken}`;
-  const Template = require(config.email.templates.welcome.template).default;
   await sendEmail({
     to: email,
-    subject: config.email.templates.welcome.subject,
-    react: Template({ name, url: verificationUrl }),
+    subject: "Welcome to NextEasy platform",
+    react: Register({ name, url: verificationUrl }),
   });
 }
 
@@ -73,11 +74,9 @@ export async function sendResetPasswordEmail(
   resetToken: string
 ) {
   const resetUrl = `${process.env.URL_FRONT}/reset-password?token=${resetToken}`;
-  const Template = require(config.email.templates.resetPassword
-    .template).default;
   await sendEmail({
     to: email,
-    subject: config.email.templates.resetPassword.subject,
-    react: Template({ url: resetUrl, name }),
+    subject: "Reset your password",
+    react: ResetPassword({ url: resetUrl, name }),
   });
 }

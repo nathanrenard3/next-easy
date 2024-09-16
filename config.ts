@@ -1,3 +1,6 @@
+import WelcomeTemplate from "@/emails/register";
+import ResetPasswordTemplate from "@/emails/reset-password";
+
 export const config: Config = {
   // App configuration
   name: "NextEasy",
@@ -86,15 +89,5 @@ export const config: Config = {
   // Email configuration
   email: {
     from: "noreply@nexteasy.fr", // Use for sending emails in production
-    templates: {
-      welcome: {
-        subject: "Welcome to NextEasy platform",
-        template: "/emails/register.tsx",
-      },
-      resetPassword: {
-        subject: "Reset your password",
-        template: "/emails/reset-password.tsx",
-      },
-    },
   },
 };

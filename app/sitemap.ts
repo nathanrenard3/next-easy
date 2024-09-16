@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/blog";
 
 const url = process.env.URL_FRONT || "";
 

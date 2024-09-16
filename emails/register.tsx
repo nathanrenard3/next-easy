@@ -10,7 +10,6 @@ import {
   Tailwind,
 } from "@react-email/components";
 import * as React from "react";
-import { config } from "@/config";
 
 interface RegisterProps {
   name?: string;
@@ -20,7 +19,7 @@ interface RegisterProps {
 export const Register = ({ name, url }: RegisterProps) => (
   <Html>
     <Head />
-    <Preview>{config.email.templates.welcome.subject}</Preview>
+    <Preview>Welcome to NextEasy platform</Preview>
     <Tailwind>
       <Body className="bg-white font-sans">
         <Container className="max-w-[480px] mx-auto py-5 px-0">
