@@ -47,13 +47,13 @@ export default async function DocPage({
     };
 
     return (
-      <div className="flex justify-center max-w-7xl mx-auto px-4 lg:px-8 mb-16">
+      <div className="flex justify-center max-w-7xl mx-auto px-4 xl:px-8 mb-16">
         <main className="w-full max-w-3xl">
           <article>
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-primary">
+            <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold mb-6 text-primary">
               {data.title}
             </h1>
-            <div className="prose prose-sm sm:prose md:prose-lg lg:prose-xl max-w-none">
+            <div className="prose prose-sm sm:prose md:prose-lg xl:prose-xl max-w-none">
               <MDXRemote source={content} components={components} />
             </div>
             <div className="mt-12 flex justify-between items-center">
@@ -78,7 +78,7 @@ export default async function DocPage({
             </div>
           </article>
         </main>
-        <aside className="hidden lg:block w-64 ml-8 fixed right-[max(0px,calc(50%-45rem))] top-28">
+        <aside className="hidden xl:block w-64 ml-8 fixed right-[max(0px,calc(50%-45rem))] top-28">
           <div className="overflow-y-auto max-h-[calc(100vh-6rem)]">
             <TableOfContents />
           </div>

@@ -1,6 +1,6 @@
 import Sidebar from "@/templates/app/Sidebar";
 import { NavigationElement } from "@/types/navigation-element";
-import { Home, Info } from "lucide-react";
+import { Home } from "lucide-react";
 import { Metadata } from "next";
 import { config } from "@/config";
 
@@ -18,11 +18,6 @@ export default async function Layout({
       title: "Home",
       icon: <Home className="h-5 w-5" />,
       href: "/dashboard",
-    },
-    {
-      title: "Other page",
-      icon: <Info className="h-5 w-5" />,
-      href: "/dashboard/other",
     },
   ];
 

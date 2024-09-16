@@ -9,7 +9,6 @@ const Settings = async () => {
 
   return (
     <div className="w-full md:container mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Settings</h1>
       <FormUserInformations
         initialData={{
           id: session!.user.id,

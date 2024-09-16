@@ -8,7 +8,7 @@ const Dashboard = async () => {
   return (
     <div>
       <h2 className="text-2xl font-bold">
-        Bienvenue, {user.firstName} {user.lastName} !
+        Welcome, {user.firstName} {user.lastName} !
       </h2>
     </div>
   );

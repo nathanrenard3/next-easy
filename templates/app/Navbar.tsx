@@ -25,6 +25,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import Logo from "../landing/Logo";
+import ToogleTheme from "@/components/ui/toogle-theme";
 
 type Props = {
   elements: NavigationElement[];
@@ -56,7 +58,7 @@ const Navbar = ({ firstName, lastName, elements }: Props) => {
   };
 
   return (
-    <header className="flex items-center justify-between p-4 lg:p-6 shadow-sm bg-white z-50">
+    <header className="flex items-center justify-between p-3 lg:p-4 shadow-sm bg-background z-50">
       {/* Left side  */}
       <Sheet>
         <SheetTrigger asChild>
@@ -68,14 +70,7 @@ const Navbar = ({ firstName, lastName, elements }: Props) => {
         <SheetContent side="left" className="lg:max-w-xs">
           <nav className="grid gap-6 text-lg font-medium">
             <Link href="/dashboard">
-              <Image
-                className="z-50 w-[80px] md:w-[80px] mb-5"
-                src="/logo.svg"
-                alt="logo"
-                width={80}
-                height={20}
-                priority
-              />
+              <Logo />
             </Link>
             {elements.map((element, index) => (
               <SheetClose asChild key={index}>
@@ -96,23 +91,17 @@ const Navbar = ({ firstName, lastName, elements }: Props) => {
         </SheetContent>
       </Sheet>
       <Link className="hidden lg:block" href="/dashboard">
-        <Image
-          className="z-50 w-[70px] md:w-[90px]"
-          src="/logo.svg"
-          alt="logo"
-          width={90}
-          height={20}
-          priority
-        />
+        <Logo />
       </Link>
 
       {/* Right side */}
       <div className="flex items-center gap-3 lg:gap-5">
+        <ToogleTheme />
         <DropdownMenu onOpenChange={setIsOpen}>
           <DropdownMenuTrigger asChild>
             <div className="flex items-center cursor-pointer">
               <Avatar>
-                <AvatarFallback className="bg-background text-muted">
+                <AvatarFallback className="bg-secondary text-primary">
                   {firstName.charAt(0)}
                   {lastName.charAt(0)}
                 </AvatarFallback>

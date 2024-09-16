@@ -55,7 +55,7 @@ export default async function BlogPost({
           <Button asChild variant="ghost" className="pl-0">
             <Link href="/blog">
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Retour aux articles
+              Back to blog
             </Link>
           </Button>
         </div>

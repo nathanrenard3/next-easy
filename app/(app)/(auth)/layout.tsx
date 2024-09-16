@@ -40,7 +40,7 @@ export default async function Layout({
           elements={sidebarElements}
         />
       </div>
-      <div className="mt-20 sm:mt-24 lg:mt-24">{children}</div>
+      <div className="my-10 lg:my-16">{children}</div>
     </div>
   );
 }

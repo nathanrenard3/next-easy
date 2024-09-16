@@ -12,26 +12,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ButtonLoading } from "@/components/ui/button-loading";
 import { toast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
-import { updateUserAction } from "@/lib/db/actions/user-actions";
+import { updateUserAction } from "./user-actions";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
-  firstName: z.string().min(1, { message: "Le prénom est requis" }),
-  lastName: z.string().min(1, { message: "Le nom est requis" }),
-  email: z.string().email({ message: "L'adresse email n'est pas valide" }),
+  firstName: z.string().min(1, { message: "First name is required" }),
+  lastName: z.string().min(1, { message: "Last name is required" }),
+  email: z.string().email({ message: "Invalid email address" }),
   phone: z
     .string()
-    .min(1, { message: "Le téléphone est requis" })
+    .min(1, { message: "Phone number is required" })
     .refine(
       (val) => {
         const parsedNumber = parsePhoneNumberFromString(val, "FR");
         return parsedNumber && parsedNumber.isValid();
       },
-      { message: "Le numéro de téléphone est invalide" }
+      { message: "Invalid phone number" }
     ),
   currentPassword: z.string().optional(),
   newPassword: z.string().optional(),
@@ -65,21 +65,19 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-      // Validation personnalisée pour les mots de passe
+      // Custom password validation
       if (data.currentPassword || data.newPassword || data.confirmNewPassword) {
         if (!data.currentPassword) {
-          throw new Error("Veuillez entrer votre mot de passe actuel");
+          throw new Error("Please enter your current password");
         }
         if (!data.newPassword) {
-          throw new Error("Veuillez entrer un nouveau mot de passe");
+          throw new Error("Please enter a new password");
         }
         if (data.newPassword.length < 8) {
-          throw new Error(
-            "Le nouveau mot de passe doit contenir au moins 8 caractères"
-          );
+          throw new Error("New password must be at least 8 characters long");
         }
         if (data.newPassword !== data.confirmNewPassword) {
-          throw new Error("Les mots de passe ne correspondent pas");
+          throw new Error("Passwords do not match");
         }
         if (
           !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
@@ -87,7 +85,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           )
         ) {
           throw new Error(
-            "Le mot de passe doit contenir au moins une minuscule, une majuscule, un chiffre et un caractère spécial"
+            "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character"
           );
         }
       }
@@ -95,16 +93,15 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
       const formData = new FormData();
       formData.append("userId", initialData.id);
 
-      if (data.currentPassword && data.newPassword) {
-        formData.append("currentPassword", data.currentPassword);
-        formData.append("newPassword", data.newPassword);
-      }
-
-      await updateUserAction(formData);
+      await updateUserAction({
+        userId: initialData.id,
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      });
 
       toast({
-        title: "Profil mis à jour",
-        description: "Vos informations ont été mises à jour avec succès.",
+        title: "Profile updated",
+        description: "Your information has been successfully updated.",
       });
 
       // Reset password fields after successful update
@@ -116,7 +113,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
       });
     } catch (error: any) {
       toast({
-        title: "Erreur",
+        title: "Error",
         description: error.message,
         variant: "destructive",
       });
@@ -131,7 +128,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="firstName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Prénom</FormLabel>
+              <FormLabel>First Name</FormLabel>
               <FormControl>
                 <Input {...field} disabled />
               </FormControl>
@@ -144,7 +141,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nom</FormLabel>
+              <FormLabel>Last Name</FormLabel>
               <FormControl>
                 <Input {...field} disabled />
               </FormControl>
@@ -170,7 +167,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Téléphone</FormLabel>
+              <FormLabel>Phone</FormLabel>
               <FormControl>
                 <Input {...field} disabled />
               </FormControl>
@@ -183,7 +180,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="currentPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mot de passe actuel</FormLabel>
+              <FormLabel>Current Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
@@ -212,7 +209,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="newPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nouveau mot de passe</FormLabel>
+              <FormLabel>New Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
@@ -241,7 +238,7 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
           name="confirmNewPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirmer le nouveau mot de passe</FormLabel>
+              <FormLabel>Confirm New Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
@@ -265,13 +262,13 @@ const FormUserInformations = ({ initialData }: FormUserInformationsProps) => {
             </FormItem>
           )}
         />
-        <ButtonLoading
+        <Button
           type="submit"
-          isLoading={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting}
           className="w-full"
         >
-          Mettre à jour le profil
-        </ButtonLoading>
+          Update Profile
+        </Button>
       </form>
     </Form>
   );

@@ -59,7 +59,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ structure }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="relative flex-1 max-w-md cursor-pointer">
+        <div className="relative flex-1 cursor-pointer">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
           <Input
             className="h-9 w-full pl-10 pr-4 rounded-md border bg-background shadow-sm md:w-full"

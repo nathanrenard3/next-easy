@@ -10,13 +10,13 @@ export default function DocLayout({ children }: { children: React.ReactNode }) {
   const structure = getDocumentationStructure();
 
   return (
-    <div className="flex flex-col lg:flex-row justify-center max-w-7xl mx-auto px-4 lg:px-8 my-8 lg:my-32">
-      <aside className="w-full lg:w-64 lg:mr-8 mb-8 lg:mb-0 lg:fixed lg:left-[max(0px,calc(50%-45rem))] lg:top-28">
-        <div className="flex flex-col gap-4 lg:block">
+    <div className="flex flex-col xl:flex-row justify-center max-w-7xl mx-auto px-4 xl:px-8 my-8 xl:my-32">
+      <aside className="w-full xl:w-64 xl:mr-8 mb-8 xl:mb-0 xl:fixed xl:left-[max(0px,calc(50%-45rem))] xl:top-28">
+        <div className="flex flex-col gap-4 xl:block">
           <SearchBar structure={structure} />
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="sm" className="lg:hidden w-full">
+              <Button variant="outline" size="sm" className="xl:hidden w-full">
                 <Menu className="h-4 w-4 mr-2" />
                 Menu
               </Button>
@@ -32,7 +32,7 @@ export default function DocLayout({ children }: { children: React.ReactNode }) {
             </SheetContent>
           </Sheet>
         </div>
-        <ScrollArea className="overflow-y-auto max-h-[50vh] lg:max-h-[calc(74vh-6rem)] mt-4 hidden lg:block">
+        <ScrollArea className="overflow-y-auto max-h-[50vh] xl:max-h-[calc(74vh-6rem)] mt-4 hidden xl:block">
           <nav className="pr-4 py-1">
             {structure.map((category) => (
               <CategoryTree key={category.path} category={category} />
@@ -40,7 +40,7 @@ export default function DocLayout({ children }: { children: React.ReactNode }) {
           </nav>
         </ScrollArea>
       </aside>
-      <main className="w-full lg:w-[calc(100%-16rem)] lg:ml-16">
+      <main className="w-full xl:w-[calc(100%-16rem)] xl:ml-16">
         {children}
       </main>
     </div>

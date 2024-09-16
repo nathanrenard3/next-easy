@@ -11,10 +11,10 @@ export function CallToAction() {
         <div className="container w-full mx-auto grid items-center justify-between rounded-xl border border-neutral-200 dark:border-neutral-800 px-0 md:grid-cols-2 py-6">
           <div className="order-2 flex flex-col gap-y-5 p-7 md:order-1 lg:p-10">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter text-neutral-900 dark:text-neutral-100 lg:text-4xl/tight">
+              <h2 className="text-3xl font-bold tracking-tighter text-primary lg:text-4xl/tight">
                 Ready to get started?
               </h2>
-              <p className="max-w-[600px] text-neutral-500 dark:text-neutral-400 md:text-base/[1.5] lg:text-base/[1.5] xl:text-lg/[1.5]">
+              <p className="max-w-[600px] text-primary/75  md:text-base/[1.5] lg:text-base/[1.5] xl:text-lg/[1.5]">
                 Join our platform and start your project today!
               </p>
             </div>
@@ -23,8 +23,8 @@ export function CallToAction() {
               className={cn(
                 "group relative gap-2 overflow-hidden text-lg font-semibold tracking-tighter w-48",
                 "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-2",
-                "bg-primary hover:bg-primary/90 text-white",
-                "dark:bg-white dark:text-muted dark:hover:bg-neutral-200"
+                "bg-primary",
+                "text-muted"
               )}
               size="lg"
               asChild

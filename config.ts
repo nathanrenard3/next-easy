@@ -97,11 +97,4 @@ export const config: Config = {
       },
     },
   },
-  // User configuration (for development)
-  user: {
-    firstName: "John",
-    lastName: "Doe",
-    email: "admin@nexteasy.fr",
-    password: "admin-password111!",
-  },
 };

@@ -1,15 +1,15 @@
 import prisma from "../lib/prisma";
-import { config } from "../config";
 import { hash } from "bcrypt";
 
 async function main() {
   await prisma.user.create({
     data: {
-      firstName: config.user.firstName,
-      lastName: config.user.lastName,
-      email: config.user.email,
-      password: await hash(config.user.password, 10),
+      firstName: "John",
+      lastName: "Doe",
+      email: "admin@nexteasy.fr",
+      password: await hash("admin-password111!", 10),
       phone: "06 06 06 06 06",
+      emailVerified: new Date(),
     },
   });
 }
