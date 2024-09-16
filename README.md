@@ -129,8 +129,9 @@ For more examples and usage instructions, please refer to the [Documentation](ht
 
 ## Roadmap
 
-- [x] Add Dark / Light theme
+- [x] Add Dark/Light theme
 - [x] Add Blog System
+- [x] Add Documentation System
 - [x] Add Stripe (with payment success and cancel url)
 - [x] Add Email System
 - [ ] Upgrade the documentation
