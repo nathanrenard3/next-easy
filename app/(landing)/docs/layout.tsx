@@ -21,7 +21,7 @@ export default function DocLayout({ children }: { children: React.ReactNode }) {
                 Menu
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
               <ScrollArea className="h-[calc(100vh-4rem)]">
                 <nav className="pr-4 pt-4">
                   {structure.map((category) => (

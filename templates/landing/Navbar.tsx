@@ -19,6 +19,7 @@ import { config } from "@/config";
 import ToogleTheme from "@/components/ui/toogle-theme";
 import Logo from "@/templates/landing/Logo";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 let menuItems = [
   {
@@ -71,27 +72,29 @@ const DesktopNavigationMenu = () => (
 );
 
 const MobileNavigationMenu = () => (
-  <>
-    {menuItems.map((menuItem, index) => (
-      <SheetClose asChild key={index}>
+  <ScrollArea className="h-[calc(100vh-4rem)]">
+    <nav className="flex flex-col space-y-4 mt-4">
+      {menuItems.map((menuItem, index) => (
+        <SheetClose asChild key={index}>
+          <Link
+            href={menuItem.href}
+            className="py-2 text-sm hover:text-primary transition-colors"
+            scroll={true}
+          >
+            {menuItem.title}
+          </Link>
+        </SheetClose>
+      ))}
+      <SheetClose asChild>
         <Link
-          href={menuItem.href}
-          className="block py-2 text-lg hover:text-primary"
-          scroll={true}
+          href="/sign-in"
+          className="py-2 text-sm font-medium hover:text-primary transition-colors"
         >
-          {menuItem.title}
+          Sign in
         </Link>
       </SheetClose>
-    ))}
-    <SheetClose asChild>
-      <Link
-        href="/sign-in"
-        className="block py-2 text-lg font-medium hover:text-primary"
-      >
-        Sign in
-      </Link>
-    </SheetClose>
-  </>
+    </nav>
+  </ScrollArea>
 );
 
 type Props = {
