@@ -235,7 +235,7 @@ const Feature = ({
                       }}
                     ></div>
                   </div>
-                  <AccordionTrigger className="text-xl font-bold">
+                  <AccordionTrigger className="text-xl font-bold text-left">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent>
