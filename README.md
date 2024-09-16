@@ -2,14 +2,6 @@
 
 <a id="readme-top"></a>
 
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -53,7 +45,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -136,11 +127,12 @@ For more examples and usage instructions, please refer to the [Documentation](ht
 
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
+- [x] Add Dark / Light theme
+- [x] Add Blog System
+- [x] Add Stripe (with payment success and cancel url)
+- [x] Add Email System
+- [ ] Upgrade the documentation
+- [ ] Multi-language System
   - [ ] French
   - [ ] Spanish
 
@@ -165,19 +157,11 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTACT -->
 
 ## Contact
 
-Nathan Renard - [@your_twitter](https://twitter.com/your_username) - n.renard38350@gmail.com
+Nathan Renard - [@nathan_renard3](https://x.com/nathan_renard3)
 
 Project Link: [https://github.com/nathanrenard3/next-easy](https://github.com/nathanrenard3/next-easy)
 
