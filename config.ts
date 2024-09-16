@@ -83,11 +83,11 @@ export const config: Config = {
     ],
     mode: "subscription", // "payment" or "subscription"
     allow_promotion_codes: true, // If true, the promotion codes can be used
-    payment_success_url: `${process.env.URL_FRONT}/success`,
-    payment_cancel_url: `${process.env.URL_FRONT}/cancel`,
+    payment_success_url: `${process.env.BASE_URL}/success`,
+    payment_cancel_url: `${process.env.BASE_URL}/cancel`,
   },
   // Email configuration
   email: {
-    from: "noreply@nexteasy.fr", // Use for sending emails in production
+    from: "noreply@replace-it.fr", // Use for sending emails in production
   },
 };

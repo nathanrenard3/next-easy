@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: process.env.URL_FRONT,
+    url: process.env.BASE_URL,
     siteName: name,
   },
   icons: {

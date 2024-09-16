@@ -53,7 +53,7 @@ export async function sendRegisterEmail(
   email: string,
   verificationToken: string
 ) {
-  const verificationUrl = `${process.env.URL_FRONT}/verify-email?token=${verificationToken}`;
+  const verificationUrl = `${process.env.BASE_URL}/verify-email?token=${verificationToken}`;
   await sendEmail({
     to: email,
     subject: "Welcome to NextEasy platform",
@@ -73,7 +73,7 @@ export async function sendResetPasswordEmail(
   email: string,
   resetToken: string
 ) {
-  const resetUrl = `${process.env.URL_FRONT}/reset-password?token=${resetToken}`;
+  const resetUrl = `${process.env.BASE_URL}/reset-password?token=${resetToken}`;
   await sendEmail({
     to: email,
     subject: "Reset your password",

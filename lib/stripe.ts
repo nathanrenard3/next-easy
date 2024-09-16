@@ -47,7 +47,7 @@ export async function createCheckoutLink(customerId: string, priceId: string) {
 export async function generateCustomerPortalLink(customerId: string) {
   const portal = await stripe.billingPortal.sessions.create({
     customer: customerId,
-    return_url: process.env.URL_FRONT + "/dashboard",
+    return_url: process.env.BASE_URL + "/dashboard",
   });
 
   return portal.url;

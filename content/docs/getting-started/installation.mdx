@@ -21,31 +21,32 @@ npm install
 
 ### Set up the environment variables
 
-Create a `.env` file in the root of the project and add the following environment variables:
+Create a `.env` file in the root of the project and add the following environment variables :
 
 ```bash
 # Database config
-DATABASE_URL="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks-pooler.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
-DIRECT_URL="postgresql://replace-it-user:replace-it-password@ep-black-dawn-a2g968ks.eu-central-1.aws.neon.tech/replace-it-db?sslmode=require"
+DATABASE_URL="postgresql://replace-it"
+DIRECT_URL="postgresql://replace-it"
 
 # Stripe config
-STRIPE_SECRET_KEY="replate-it-test-secret-key"
-STRIPE_WEBHOOK_SECRET="replate-it-test-webhook-secret"
+STRIPE_SECRET_KEY="replace-it"
+STRIPE_WEBHOOK_SECRET="replace-it"
 
 # Resend config (for sending emails)
-RESEND_API_KEY="replate-it-test-api-key"
+RESEND_API_KEY="replate-it"
 
 # The url for the front (used by stripe webhook and email links)
-URL_FRONT="http://localhost:3000" # Change it in prod
+BASE_URL="http://localhost:3000" # Change it in prod
 
 # The url for the nextauth (login, logout, etc.) in dev
 NEXTAUTH_URL="http://localhost:3000" # Automatically set in prod
-NEXTAUTH_SECRET="replate-it-test-secret-key"
+NEXTAUTH_SECRET="replate-it"
 
 # The email from which the emails are sent
 DEV_EMAIL_FROM="Acme <onboarding@resend.dev>"
 # Where the emails are sent to for testing
-DEV_EMAIL_TO="replate-it-test-email@example.com"
+DEV_EMAIL_TO="replate-it@gmaill.com"
+
 ```
 
 ### Stripe config
