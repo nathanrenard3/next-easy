@@ -15,7 +15,7 @@ const Questions = () => {
     {
       question: "What technologies are used in this boilerplate?",
       answer:
-        "This boilerplate is built with Next.js, TailwindCSS, Shadcn / Magic UI, NextAuth, Prisma, Resend and Supabase.",
+        "This boilerplate is built with Next.js, TailwindCSS, Shadcn / Magic UI, NextAuth, Prisma and Resend .",
     },
     {
       question: "Is this boilerplate open source?",

@@ -31,7 +31,7 @@ export const OL = (props: any) => (
 );
 export const LI = (props: any) => <li className="text-sm mb-2" {...props} />;
 export const A = (props: any) => (
-  <a className="text-sm text-primary hover:underline" {...props} />
+  <a className="text-sm text-primary underline" {...props} />
 );
 
 export const CodeBlock = ({ children, className }: any) => {

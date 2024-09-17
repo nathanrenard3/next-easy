@@ -21,64 +21,31 @@ npm install
 
 ### Set up the environment variables
 
-Create a `.env` file in the root of the project and add the following environment variables :
+Run the setup script to configure your environment variables:
 
 ```bash
-# Database config
-DATABASE_URL="postgresql://replace-it"
-DIRECT_URL="postgresql://replace-it"
-
-# Stripe config
-STRIPE_SECRET_KEY="replace-it"
-STRIPE_WEBHOOK_SECRET="replace-it"
-
-# Resend config (for sending emails)
-RESEND_API_KEY="replate-it"
-
-# The url for the front (used by stripe webhook and email links)
-BASE_URL="http://localhost:3000" # Change it in prod
-
-# The url for the nextauth (login, logout, etc.) in dev
-NEXTAUTH_URL="http://localhost:3000" # Automatically set in prod
-NEXTAUTH_SECRET="replate-it"
-
-# The email from which the emails are sent
-DEV_EMAIL_FROM="Acme <onboarding@resend.dev>"
-# Where the emails are sent to for testing
-DEV_EMAIL_TO="replate-it@gmaill.com"
-
+npm run setup
 ```
 
-### Stripe config
+This script will guide you through setting up:
+- Database configuration
+- Stripe integration
+- Email settings
+- Authentication secrets
 
-To set up Stripe products and prices:
+The script will ask you to provide:
+- Database URLs
+- Stripe API keys
+- Resend API key for email
+- Base URL for your application
+- Email addresses for development testing
 
-1. Open `config.ts` in the root directory
-2. Locate the `stripe.products` array
-3. Update each product with your Stripe Price ID, name, description, price (in cents), and features.
+After completion, the script will create a `.env` file in the root of your project with all necessary variables.
 
-### Auth config
+### Seed the database
 
-NextEasy uses NextAuth for authentication. Configure providers in `app/api/auth/[...nextauth]/route.ts`
-To update or add a new provider, follow these steps:
+```bash
+npm run seed
+```
 
-1. Open `/app/api/auth/[...nextauth]/authOptions.ts` in the root directory
-2. Update the `providers` array with your authentication providers
-3. Update the `callbacks` object to customize token / session behavior. And modify `/types/next-auth.d.ts` if you need to add new properties to the user object.
-
-### Additional information
-
-- Customize `next.config.mjs` for Next.js-specific configurations.
-- Customize `/styles/globals.css` for global styles (shadcn theme).
-- Update `app/layout.tsx` for global layout and metadata settings.
-
-## Project structure
-
-- `/app`: Contains the main application code
-- `/components`: Reusable React components
-- `/lib`: Utility functions and helpers
-- `/prisma`: Prisma ORM models and migrations
-- `/public`: Static assets
-- `/styles`: Global styles and theme configuration
-- `/types`: TypeScript types
-- `/features`: Feature-specific components and logic
+This will create a new user in the database with the email `admin@nexteasy.fr` and the password `admin-password111!` (use it to login only in development).

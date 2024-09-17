@@ -1,0 +1,43 @@
+---
+title: "Documentation"
+description: "Write your documentation in markdown format"
+position: 1
+---
+
+## Creating Your Own Documentation
+
+NextEasy provides a simple and efficient way to create and manage your project's documentation. This guide will walk you through the process of adding and organizing your documentation.
+
+## Directory Structure
+
+Your documentation files should be placed in the `content/docs` directory. The structure of this directory determines the organization of your documentation. Here's an example structure:
+
+```
+content/docs
+├── getting-started
+│   ├── index.mdx
+│   ├── advanced-configuration
+│   │   ├── shadcn.mdx
+│   │   ├── authentication.mdx
+│   │   └── ...
+│   └── ...
+├── features
+│   ├── index.mdx
+│   ├── documentation.mdx
+│   └── ...
+```
+
+## Writing Documentation
+
+1. Create `.mdx` file in the directory you want to add the documentation to.
+2. Each `.mdx` file should start with a frontmatter section that includes metadata about the document. For example:
+
+```
+---
+title: "My Documentation"
+description: "This is a sample documentation"
+position: 1
+---
+```
+
+The `title` is used as the page title, the `description` is used as the page description, and the `position` is used to sort the page in the sidebar.

@@ -145,7 +145,7 @@ const Hero = () => {
               colorTo={
                 currentTheme === "dark" ? "#ffffff" : "hsl(var(--primary))"
               }
-              size={250}
+              size={150}
               delay={9}
               duration={12}
             />

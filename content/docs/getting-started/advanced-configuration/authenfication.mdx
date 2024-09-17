@@ -1,0 +1,35 @@
+---
+title: "Authentication Configuration"
+description: "Guide to configure and customize authentication in NextEasy"
+position: 2
+---
+
+# Authentication Configuration
+
+NextEasy uses NextAuth.js for authentication, providing a flexible and secure system for user management. This guide will help you configure and customize the authentication system to fit your project's needs.
+
+## Basic Configuration
+
+NextEasy uses NextAuth for authentication. The main configuration is located in `app/api/auth/[...nextauth]/route.ts`. To update or add a new provider, follow these steps:
+
+1. Open `/app/api/auth/[...nextauth]/authOptions.ts` in the root directory
+2. Update the `providers` array with your authentication providers
+3. Update the `callbacks` object to customize token / session behavior
+4. Modify `/types/next-auth.d.ts` if you need to add new properties to the user object
+
+## Available Providers
+
+By default, NextEasy includes the following authentication provider:
+- Email/Password (Credentials)
+
+To add more providers, such as Google or GitHub, you'll need to install the respective packages and add them to the `providers` array in the configuration file.
+
+## Customizing Authentication
+
+### Adding a New Provider
+
+To add a new authentication provider, such as Google OAuth, just go to the [NextAuth website](https://next-auth.js.org/providers) and search for the provider you want to add.
+
+Then, copy and paste the code for the provider you want to add.
+
+ps: You can also customize the provider to your needs.

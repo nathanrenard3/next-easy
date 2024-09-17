@@ -1,0 +1,25 @@
+---
+title: "Stripe Configuration"
+description: "Guide to configure and customize Stripe integration in NextEasy"
+position: 3
+---
+
+# Stripe Configuration
+
+NextEasy comes with built-in Stripe integration for handling payments and subscriptions. This guide will help you set up and customize the Stripe configuration for your project.
+
+## Setting Up Stripe
+
+1. Create a Stripe account if you haven't already at [stripe.com](https://stripe.com).
+2. Obtain your Stripe API keys from the Stripe Dashboard.
+3. During the setup process (`npm run setup`), you'll be prompted to enter your Stripe Secret Key. This will be stored in your `.env` file.
+
+## Configuring Stripe Products and Prices
+
+To set up Stripe products and prices:
+
+1. Open `config.ts` in the root directory
+2. Locate the `stripe.products` array
+3. Update each product with your Stripe Price ID, name, description, price (in cents), and features.
+
+ps: You can find the price ID in the Stripe Dashboard.

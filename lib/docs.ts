@@ -216,16 +216,18 @@ function flattenStructure(structure: Category[]): PageInfo[] {
   const flattened: PageInfo[] = [];
 
   function traverse(category: Category, parentPath: string[] = []) {
-    category.files.forEach((file) => {
-      const slugParts = [...parentPath, file.slug]
-        .filter(Boolean)
-        .reduce((acc, part) => {
-          if (acc[acc.length - 1] !== part) {
-            acc.push(part);
-          }
-          return acc;
-        }, [] as string[]);
+    const currentPath = category.path
+      ? [
+          ...parentPath,
+          ...category.path.split("/").filter((p) => !parentPath.includes(p)),
+        ]
+      : parentPath;
 
+    category.files.forEach((file) => {
+      const slugParts = [...currentPath];
+      if (file.slug !== "index") {
+        slugParts.push(file.slug);
+      }
       flattened.push({
         title: file.title,
         slug: slugParts.join("/"),
@@ -233,16 +235,7 @@ function flattenStructure(structure: Category[]): PageInfo[] {
     });
 
     category.categories?.forEach((subCategory) => {
-      const newParentPath = [...parentPath, subCategory.path]
-        .filter(Boolean)
-        .reduce((acc, part) => {
-          if (acc[acc.length - 1] !== part) {
-            acc.push(part);
-          }
-          return acc;
-        }, [] as string[]);
-
-      traverse(subCategory, newParentPath);
+      traverse(subCategory, currentPath);
     });
   }
 
