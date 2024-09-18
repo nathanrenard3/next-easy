@@ -84,7 +84,7 @@
     "ldrs": "^1.0.2",
     "libphonenumber-js": "^1.11.5",
     "lucide-react": "^0.411.0",
-    "next": "14.2.4",
+    "next": "14.2.10",
     "next-auth": "^4.24.7",
     "next-mdx-remote": "^5.0.0",
     "next-qrcode": "^2.5.1",
