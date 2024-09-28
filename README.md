@@ -97,16 +97,22 @@ To get a local copy up and running, follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+### Installation Steps
+
+1. Clone the Repository
    ```sh
    git clone https://github.com/nathanrenard3/next-easy.git
    ```
-2. Install NPM packages
+2. Install NPM Packages
    ```sh
    npm install
    ```
-3. Set up your environment variables in `.env` file
-4. Run the development server
+3. Set Up Environment Variables
+   Run the following command to set up your environment variables in the `.env` file:
+   ```
+   npm run setup
+   ```
+4. Run the Development Server
    ```sh
    npm run dev
    ```
