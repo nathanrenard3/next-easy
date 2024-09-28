@@ -16,18 +16,6 @@ const LegalNotices = () => {
         "Email: https://www.hostinger.com/contact",
       ],
     },
-    {
-      title: "3. Registered Office",
-      content: [
-        "14 boulevard maréchal Leclerc, 38000 Grenoble, France",
-        "Phone: (+33) 6 78 33 98 75",
-        "Legal form: Micro-enterprise",
-        "First name: Nathan",
-        "Last name: Renard",
-        "Email: n.renard38350@gmail.com",
-        "SIRET: 92831184400015",
-      ],
-    },
   ];
 
   return (
